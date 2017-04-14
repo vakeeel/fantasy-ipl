@@ -48,11 +48,25 @@ require 'optparse'
 
 
 # KXIB vs KKR
-our_team = "AR Patel, MP Stoinis, TA Boult, PP Chawla, RV Uthappa, GJ Maxwell, Sandeep Sharma, M Vohra, YK Pathan, SA Yadav, DA Miller"
-opposing_team = "G Gambhir, HM Amla, WP Saha, MK Pandey, MM Sharma, I Sharma, VR Aaron, CR Woakes, C de Grandhomme, SP Narine, UT Yadav"
-our_captain = "AR Patel"
-opponent_captain = "C de Grandhomme"
-match_url = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082601.html?view=scorecard;wrappertype=none"
+# our_team = "AR Patel, MP Stoinis, TA Boult, PP Chawla, RV Uthappa, GJ Maxwell, Sandeep Sharma, M Vohra, YK Pathan, SA Yadav, DA Miller"
+# opposing_team = "G Gambhir, HM Amla, WP Saha, MK Pandey, MM Sharma, I Sharma, VR Aaron, CR Woakes, C de Grandhomme, SP Narine, UT Yadav"
+# our_captain = "AR Patel"
+# opponent_captain = "C de Grandhomme"
+# match_url = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082601.html?view=scorecard;wrappertype=none"
+
+# RCB vs MI
+# our_team = "CH Gayle, PA Patel, JJ Bumrah, AB de Villiers, N Rana, Mandeep Singh, Harbhajan Singh, KA Pollard, TS Mills, TG Southee, S Badree"
+# opposing_team = "V Kohli, JC Buttler, RG Sharma, KH Pandya, KM Jadhav, STR Binny, P Negi, HH Pandya, YS Chahal, MJ McClenaghan, S Aravind"
+# our_captain = "JJ Bumrah"
+# opponent_captain = "V Kohli"
+# match_url = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082602.html?view=scorecard;wrappertype=none"
+
+# GL vs RPS
+our_team = "LH Ferguson, AJ Finch, RD Chahar, SN Thakur, KD Karthik, RA Jadeja, MK Tiwary, Ishan Kishan, P Kumar, SPD Smith, RA Tripathi"
+opposing_team = "MS Dhoni, DR Smith, BB McCullum, Ankit Sharma, SK Raina, Imran Tahir, Basil Thampi, BA Stokes, AJ Tye, AM Rahane, SB Jakati"
+our_captain = "SPD Smith"
+opponent_captain = "Imran Tahir"
+match_url = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082603.html?view=scorecard;wrappertype=none"
 
 our_players = our_team.split(', ')
 opponent_players = opposing_team.split(', ')
@@ -171,6 +185,8 @@ puts "Total second innings : " + (second_innings_our_score - second_innings_oppo
 
 puts "*"*100
 
+puts "Our team: " + 	(first_innings_our_score + second_innings_our_score).to_s
+puts "Opposing team: " + 	(first_innings_opponent_score + second_innings_opponent_score).to_s
 puts "TOTAL : " + ((first_innings_our_score + second_innings_our_score) - (first_innings_opponent_score + second_innings_opponent_score)).to_s
 
 
