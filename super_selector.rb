@@ -96,7 +96,30 @@ def read_table_rows(trs, our_team, opposing_team, our_captain, opponent_captain)
 	opposing_team_fielding_total = 0
 
 	dismissal_info.each do |dismissal|
-		if (dismissal.include? 'c ')
+		if (dismissal.include? 'st ')
+			fielder_name = dismissal.split(' ')[1]
+			if (fielder_name == '&') 
+				fielder_name = dismissal.split(' ').last
+			end
+
+			fielder_name.gsub!(/\W+/, '')  # Doing this for keepers where you have † symbol.
+			if (opposing_team.any? {|s| s.include? fielder_name})
+				opposing_team_fielding_total += (opponent_captain.include? fielder_name) ? 2*5 : 5
+			elsif (our_team.any? {|s| s.include? fielder_name})
+				our_team_fielding_total += (our_captain.include? fielder_name) ? 2*5 : 5
+			end
+
+			bowler_name = dismissal.split(' b ')[1]
+			if (bowler_name != nil)
+				if (opposing_team.any? {|s| s.include? bowler_name})
+					opposing_team_fielding_total += (opponent_captain.include? bowler_name) ? 2*20 : 20
+				elsif (our_team.any? {|s| s.include? bowler_name})
+					our_team_fielding_total += (our_captain.include? bowler_name) ? 2*20 : 20
+				end
+			end
+			
+			next;
+		elsif (dismissal.include? 'c ')
 			fielder_name = dismissal.split(' ')[1]
 			if (fielder_name == '&') 
 				fielder_name = dismissal.split(' ').last
