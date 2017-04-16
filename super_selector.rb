@@ -269,7 +269,8 @@ FantasyInnings::OPPOSING_TEAM.each do |player|
 	puts player.strip + "|" + second_innings.player_batting_score[player].to_s + "|" + second_innings.player_fielding_score[player].to_s + "|"
 end
 
-puts "Total second innings : " + (second_innings_our_score - second_innings_opponent_score).to_s
+total_second_innings = (second_innings_our_score - second_innings_opponent_score)
+puts "Total second innings : #{total_second_innings}".blue
 
 puts "*"*100
 
