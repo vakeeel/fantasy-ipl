@@ -57,24 +57,54 @@ class FantasyInnings
 	# MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082602.html?view=scorecard;wrappertype=none"
 
 	# GL vs RPS
-	OUR_PLAYERS = "LH Ferguson, AJ Finch, RD Chahar, SN Thakur, KD Karthik, RA Jadeja, MK Tiwary, Ishan Kishan, P Kumar, SPD Smith, RA Tripathi"
-	OPPOSING_PLAYERS = "MS Dhoni, DR Smith, BB McCullum, Ankit Sharma, SK Raina, Imran Tahir, Basil Thampi, BA Stokes, AJ Tye, AM Rahane, SB Jakati"
-	OUR_CAPTAIN = "SPD Smith"
-	OPPONENT_CAPTAIN = "Imran Tahir"
-	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082603.html?view=scorecard;wrappertype=none"
+	# OUR_PLAYERS = "LH Ferguson, AJ Finch, RD Chahar, SN Thakur, KD Karthik, RA Jadeja, MK Tiwary, Ishan Kishan, P Kumar, SPD Smith, RA Tripathi"
+	# OPPOSING_PLAYERS = "MS Dhoni, DR Smith, BB McCullum, Ankit Sharma, SK Raina, Imran Tahir, Basil Thampi, BA Stokes, AJ Tye, AM Rahane, SB Jakati"
+	# OUR_CAPTAIN = "SPD Smith"
+	# OPPONENT_CAPTAIN = "Imran Tahir"
+	# MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082603.html?view=scorecard;wrappertype=none"
+
+	# RCB vs RPS
+	OUR_PLAYERS = "MS Dhoni, S Aravind, S Badree, P Negi, SR Watson, V Kohli, JD Unadkat, SN Thakur, MK Tiwary, DT Christian, AM Rahane"
+	OPPOSING_PLAYERS = "RD Chahar, AF Milne, YS Chahal, Imran Tahir, STR Binny, KM Jadhav, AB de Villiers, BA Stokes, SPD Smith, RA Tripathi, Mandeep Singh"
+	OUR_CAPTAIN = "SR Watson"
+	OPPONENT_CAPTAIN = "BA Stokes"
+	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082607.html?view=scorecard;wrappertype=none"
+
 
 	OUR_TEAM = OUR_PLAYERS.split(', ')
 	OPPOSING_TEAM = OPPOSING_PLAYERS.split(', ')
 
-	attr_accessor :our_team_batting_total, :opposing_team_batting_total, :our_team_fielding_total, :opposing_team_fielding_total, :player_batting_score, :player_fielding_score
+	attr_accessor :our_team_batting_total, :opposing_team_batting_total, :our_team_fielding_total, 
+	:opposing_team_fielding_total, :player_batting_score, :player_fielding_score
 
 	def initialize
 		@our_team_batting_total = 0
 		@opposing_team_batting_total = 0
 		@our_team_fielding_total = 0
 		@opposing_team_fielding_total = 0
-		@player_batting_score = {}
-		@player_fielding_score = {}
+		@player_batting_score = Hash.new(0)
+		@player_fielding_score = Hash.new(0)
+	end
+
+	def read_table_rows(trs)
+	 	dismissal_infos = get_dismissal_infos(trs)
+
+		dismissal_infos.each do |dismissal|
+			if ((dismissal.include? 'st ') || (dismissal.include? 'c '))
+				update_scores_for_catch_or_stumping(dismissal)			
+				next;
+			elsif (dismissal.include? 'run out')
+				update_scores_for_runout(dismissal)
+				next
+			elsif ((dismissal.include? 'lbw ')	|| (dismissal.include? 'b '))
+				update_scores_for_lbw_or_bowled(dismissal)
+			end
+		end
+
+		puts "Our Team Fielding Score : " + @our_team_fielding_total.to_s
+		puts "Opposing Team Fielding Score : " + @opposing_team_fielding_total.to_s
+
+		return (@our_team_batting_total + @our_team_fielding_total), (@opposing_team_batting_total + @opposing_team_fielding_total)
 	end
 
 	def get_dismissal_infos(trs)
@@ -112,27 +142,6 @@ class FantasyInnings
 		dismissal_infos
 	end	
 
-	def read_table_rows(trs)
-	 	dismissal_infos = get_dismissal_infos(trs)
-
-		dismissal_infos.each do |dismissal|
-			if ((dismissal.include? 'st ') || (dismissal.include? 'c '))
-				update_scores_for_catch_or_stumping(dismissal)			
-				next;
-			elsif (dismissal.include? 'run out')
-				update_scores_for_runout(dismissal)
-				next
-			elsif ((dismissal.include? 'lbw ')	|| (dismissal.include? 'b '))
-				update_scores_for_lbw_or_bowled(dismissal)
-			end
-		end
-
-		puts "Our Team Fielding Score : " + @our_team_fielding_total.to_s
-		puts "Opposing Team Fielding Score : " + @opposing_team_fielding_total.to_s
-
-		return (@our_team_batting_total + @our_team_fielding_total), (@opposing_team_batting_total + @opposing_team_fielding_total)
-	end
-
 	def update_scores_for_catch_or_stumping(dismissal)
 		fielder_name = dismissal.split(' ')[1]
 		if (fielder_name == '&') 
@@ -142,7 +151,6 @@ class FantasyInnings
 		fielder_name.gsub!(/\W+/, '')  # Doing this for keepers where you have † symbol.
 		opposing_team_fielder_name = OPPOSING_TEAM.find {|s| s.include? fielder_name}
 		if (opposing_team_fielder_name != nil)
-			@player_fielding_score[opposing_team_fielder_name] = 0 if @player_fielding_score[opposing_team_fielder_name].nil?
 			if (OPPONENT_CAPTAIN.include? fielder_name)
 				@opposing_team_fielding_total += 2*5
 				@player_fielding_score[opposing_team_fielder_name] += 2*5
@@ -152,7 +160,6 @@ class FantasyInnings
 			end
 		else
 			our_team_fielder_name = OUR_TEAM.find {|s| s.include? fielder_name}
-			@player_fielding_score[our_team_fielder_name] = 0 if @player_fielding_score[our_team_fielder_name].nil?
 			if (OUR_TEAM.include? fielder_name)
 				@our_team_fielding_total += 2*5
 				@player_fielding_score[our_team_fielder_name] += 2*5
@@ -166,7 +173,6 @@ class FantasyInnings
 		if (bowler_name != nil)
 			opposing_team_bowler_name = OPPOSING_TEAM.find {|s| s.include? bowler_name}
 			if (opposing_team_bowler_name != nil)
-				@player_fielding_score[opposing_team_bowler_name] = 0 if @player_fielding_score[opposing_team_bowler_name].nil?
 				if (OPPONENT_CAPTAIN.include? bowler_name)
 					@opposing_team_fielding_total += 2*20
 					@player_fielding_score[opposing_team_bowler_name] += 2*20
@@ -176,7 +182,6 @@ class FantasyInnings
 				end
 			else
 				our_team_bowler_name = OUR_TEAM.find {|s| s.include? bowler_name}
-				@player_fielding_score[our_team_bowler_name] = 0 if @player_fielding_score[our_team_bowler_name].nil?
 				if (OUR_CAPTAIN.include? bowler_name)
 					@our_team_fielding_total += 2*20
 					@player_fielding_score[our_team_bowler_name] += 2*20
@@ -190,10 +195,26 @@ class FantasyInnings
 
 	def update_scores_for_lbw_or_bowled(dismissal)
 		bowler_name = dismissal.split('b ')[1]
-		if (OPPOSING_TEAM.any? {|s| s.include? bowler_name})
-			@opposing_team_fielding_total += (OPPONENT_CAPTAIN.include? bowler_name) ? 2*25 : 25
-		elsif (OUR_TEAM.any? {|s| s.include? bowler_name})
-			@our_team_fielding_total += (OUR_CAPTAIN.include? bowler_name) ? 2*25 : 25
+		if (bowler_name != nil)
+			opposing_team_bowler_name = OPPOSING_TEAM.find {|s| s.include? bowler_name}
+			if (opposing_team_bowler_name != nil)
+				if (OPPONENT_CAPTAIN.include? bowler_name)
+					@opposing_team_fielding_total += 2*25
+					@player_fielding_score[opposing_team_bowler_name] += 2*25
+				else
+					@opposing_team_fielding_total += 25
+					@player_fielding_score[opposing_team_bowler_name] += 25
+				end
+			else
+				our_team_bowler_name = OUR_TEAM.find {|s| s.include? bowler_name}
+				if (OUR_CAPTAIN.include? bowler_name)
+					@our_team_fielding_total += 2*25
+					@player_fielding_score[our_team_bowler_name] += 2*25
+				else
+					@our_team_fielding_total += 25
+					@player_fielding_score[our_team_bowler_name] += 25
+				end
+			end
 		end
 	end
 
@@ -202,81 +223,116 @@ class FantasyInnings
 		if(fielder_name.include? '/')
 			fielder_names = fielder_name.split('/')
 			fielder_names.each do |fn|
-				if (OPPOSING_TEAM.any? {|s| s.include? fn})
-					@opposing_team_fielding_total += (OPPONENT_CAPTAIN.include? fn) ? 2*5 : 5
-				elsif (OUR_TEAM.any? {|s| s.include? fn})
-					@our_team_fielding_total += (OUR_CAPTAIN.include? fn) ? 2*5 : 5
+				fn.gsub!(/\W+/, '')  # Doing this for keepers where you have † symbol.
+				opposing_team_fielder_name = OPPOSING_TEAM.find {|s| s.include? fn}
+
+				if (opposing_team_fielder_name != nil)
+					if (OPPONENT_CAPTAIN.include? opposing_team_fielder_name)
+						@opposing_team_fielding_total += 2*5
+						@player_fielding_score[opposing_team_fielder_name] += 2*5
+					else
+						@opposing_team_fielding_total += 5
+						@player_fielding_score[opposing_team_fielder_name] += 5
+					end
+				else
+					our_team_fielder_name = OUR_TEAM.find {|s| s.include? fn}
+					if (OUR_CAPTAIN.include? our_team_fielder_name)
+						@our_team_fielding_total += 2*5
+						@player_fielding_score[our_team_fielder_name] += 2*5
+					else
+						@our_team_fielding_total += 5
+						@player_fielding_score[our_team_fielder_name] += 5
+					end
 				end
 			end
 			return
 		end
 
-		if (OPPOSING_TEAM.any? {|s| s.include? fielder_name})
-			@opposing_team_fielding_total += (OPPONENT_CAPTAIN.include? fielder_name) ? 2*5 : 5
-		elsif (OUR_TEAM.any? {|s| s.include? fielder_name})
-			@our_team_fielding_total += (OUR_CAPTAIN.include? fielder_name) ? 2*5 : 5
+		opposing_team_fielder_name = OPPOSING_TEAM.find {|s| s.include? fielder_name}
+		if (opposing_team_fielder_name != nil)
+			if (OPPONENT_CAPTAIN.include? opposing_team_fielder_name)
+				@opposing_team_fielding_total += 2*5
+				@player_fielding_score[opposing_team_fielder_name] += 2*5
+			else
+				@opposing_team_fielding_total += 5
+				@player_fielding_score[opposing_team_fielder_name] += 5
+			end
+		else
+			our_team_fielder_name = OUR_TEAM.find {|s| s.include? fielder_name}
+			if (OUR_CAPTAIN.include? our_team_fielder_name)
+				@our_team_fielding_total += 2*5
+				@player_fielding_score[our_team_fielder_name] += 2*5
+			else
+				@our_team_fielding_total += 5
+				@player_fielding_score[our_team_fielder_name] += 5
+			end
 		end
 	end
-
 end
 
-puts "OUR TEAM : " + FantasyInnings::OUR_PLAYERS
-puts "OPPOSING TEAM : " + FantasyInnings::OPPOSING_PLAYERS
+puts "OUR TEAM : ".bold + FantasyInnings::OUR_PLAYERS
+puts "OPPOSING TEAM : ".bold + FantasyInnings::OPPOSING_PLAYERS
+
 puts "*"*100
 
 "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082600.html?view=scorecard;wrappertype=none"
 page = Nokogiri::HTML(open(FantasyInnings::MATCH_URL))
 batting_tables = page.css(".full-scorecard-block").css(".batting-table")
 
-puts "FIRST INNINGS: ".red
+puts "FIRST INNINGS: ".cyan.bold
 first_innings = FantasyInnings.new
 
 first_innings_records = batting_tables[0].css("tr:not(.dismissal-detail)").css("tr:not(.tr-heading)").css("tr:not(.extra-wrap)").css("tr:not(.total-wrap)")
 first_innings_our_score, first_innings_opponent_score = first_innings.read_table_rows(first_innings_records)
 
-puts "First Innings Our Individual Scores : ".green
-puts "Player Name" + "|Batting Score|" + "Fielding Score|"
-FantasyInnings::OUR_TEAM.each do |player|
-	puts player.strip + "|" + first_innings.player_batting_score[player].to_s + "|" + first_innings.player_fielding_score[player].to_s + "|"
-end
+# puts "*"*100
 
-puts "First Innings Opponent Individual Scores : ".green
-puts "Player Name" + "|Batting Score|" + "Fielding Score|"
-FantasyInnings::OPPOSING_TEAM.each do |player|
-	puts player.strip + "|" + first_innings.player_batting_score[player].to_s + "|" + first_innings.player_fielding_score[player].to_s + "|"
-end
-
-total_first_innings = first_innings_our_score - first_innings_opponent_score
-puts "Total first innings : #{total_first_innings}".blue
-
-puts "*"*100
-
-puts "SECOND INNINGS: ".red
+puts "SECOND INNINGS: ".cyan.bold
 second_innings = FantasyInnings.new
 
 second_innings_records = batting_tables[1].css("tr:not(.dismissal-detail)").css("tr:not(.tr-heading)").css("tr:not(.extra-wrap)").css("tr:not(.total-wrap)")
 second_innings_our_score, second_innings_opponent_score = second_innings.read_table_rows(second_innings_records)
 
-puts "Second Innings Our Individual Scores : ".green
-puts "Player Name" + "|Batting Score|" + "Fielding Score|"
+puts "*"*100
+
+puts "Our Team".colorize(:color => :white, :background => :black).bold
+puts "Player|Batting Score|Fielding Score|Total Score|".bold
+player_final_batting_score = Hash.new(0)
+player_final_fielding_score = Hash.new(0)
+player_final_score = Hash.new(0)
+
 FantasyInnings::OUR_TEAM.each do |player|
-	puts player.strip + "|" + second_innings.player_batting_score[player].to_s + "|" + second_innings.player_fielding_score[player].to_s + "|"
+	player_final_batting_score[player] = first_innings.player_batting_score[player] + second_innings.player_batting_score[player]
+	player_final_fielding_score[player] = first_innings.player_fielding_score[player] + second_innings.player_fielding_score[player]
+	player_final_score[player] = player_final_batting_score[player] + player_final_fielding_score[player]
+	
+	puts player.strip + "|" + player_final_batting_score[player].to_s + "|" + player_final_fielding_score[player].to_s + "|" + player_final_score[player].to_s + "|"
 end
 
-puts "Second Innings Opponent Individual Scores : ".green
-puts "Player Name" + "|Batting Score|" + "Fielding Score|"
-FantasyInnings::OPPOSING_TEAM.each do |player|
-	puts player.strip + "|" + second_innings.player_batting_score[player].to_s + "|" + second_innings.player_fielding_score[player].to_s + "|"
-end
-
-total_second_innings = (second_innings_our_score - second_innings_opponent_score)
-puts "Total second innings : #{total_second_innings}".blue
+our_team_total = first_innings_our_score + second_innings_our_score
+puts "Our Team Total : #{our_team_total}".blue.bold
 
 puts "*"*100
 
-puts "Our team: " + 	(first_innings_our_score + second_innings_our_score).to_s
-puts "Opposing team: " + 	(first_innings_opponent_score + second_innings_opponent_score).to_s
-puts "TOTAL : " + ((first_innings_our_score + second_innings_our_score) - (first_innings_opponent_score + second_innings_opponent_score)).to_s
+puts "Opposing Team".colorize(:color => :white, :background => :black).bold
+puts "Player|Batting Score|Fielding Score|Total Score|".bold
+opposing_player_final_batting_score = Hash.new(0)
+opposing_player_final_fielding_score = Hash.new(0)
+opposing_player_final_score = Hash.new(0)
 
+FantasyInnings::OPPOSING_TEAM.each do |player|
+	opposing_player_final_batting_score[player] = first_innings.player_batting_score[player] + second_innings.player_batting_score[player]
+	opposing_player_final_fielding_score[player] = first_innings.player_fielding_score[player] + second_innings.player_fielding_score[player]
+	opposing_player_final_score[player] = opposing_player_final_batting_score[player] + opposing_player_final_fielding_score[player]
+	
+	puts player.strip + "|" + opposing_player_final_batting_score[player].to_s + "|" + opposing_player_final_fielding_score[player].to_s + "|" + opposing_player_final_score[player].to_s + "|"
+end	
 
+opposing_team_total = first_innings_opponent_score + second_innings_opponent_score
+puts "Opposing Team Total : #{opposing_team_total}".blue.bold
+
+puts "*"*100
+
+final_total = (first_innings_our_score + second_innings_our_score) - (first_innings_opponent_score + second_innings_opponent_score)
+puts "MATCH AGGREGATE : ".bold + ((final_total < 0) ? final_total.to_s.red : final_total.to_s.green)
 
