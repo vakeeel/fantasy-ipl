@@ -1,7 +1,6 @@
 require 'open-uri'
 require 'rubygems'
 require 'nokogiri'
-require 'optparse' 
 require 'colorize'
 
 class FantasyInnings
@@ -69,7 +68,6 @@ class FantasyInnings
 	OUR_CAPTAIN = "SR Watson"
 	OPPONENT_CAPTAIN = "BA Stokes"
 	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082607.html?view=scorecard;wrappertype=none"
-
 
 	OUR_TEAM = OUR_PLAYERS.split(', ')
 	OPPOSING_TEAM = OPPOSING_PLAYERS.split(', ')
@@ -296,7 +294,7 @@ second_innings_our_score, second_innings_opponent_score = second_innings.read_ta
 puts "*"*100
 
 puts "Our Team".colorize(:color => :white, :background => :black).bold
-puts "Player|Batting Score|Fielding Score|Total Score|".bold
+printf "%-20s %-20s %-20s %-20s\n", "Player", "Batting Score", "Fielding Score", "Total Score"
 player_final_batting_score = Hash.new(0)
 player_final_fielding_score = Hash.new(0)
 player_final_score = Hash.new(0)
@@ -306,7 +304,7 @@ FantasyInnings::OUR_TEAM.each do |player|
 	player_final_fielding_score[player] = first_innings.player_fielding_score[player] + second_innings.player_fielding_score[player]
 	player_final_score[player] = player_final_batting_score[player] + player_final_fielding_score[player]
 	
-	puts player.strip + "|" + player_final_batting_score[player].to_s + "|" + player_final_fielding_score[player].to_s + "|" + player_final_score[player].to_s + "|"
+	printf "%-20s %-20s %-20s %-20s\n", player.strip, player_final_batting_score[player].to_s, player_final_fielding_score[player].to_s, player_final_score[player].to_s
 end
 
 our_team_total = first_innings_our_score + second_innings_our_score
@@ -315,7 +313,8 @@ puts "Our Team Total : #{our_team_total}".blue.bold
 puts "*"*100
 
 puts "Opposing Team".colorize(:color => :white, :background => :black).bold
-puts "Player|Batting Score|Fielding Score|Total Score|".bold
+printf "%-20s %-20s %-20s %-20s\n", "Player", "Batting Score", "Fielding Score", "Total Score"
+
 opposing_player_final_batting_score = Hash.new(0)
 opposing_player_final_fielding_score = Hash.new(0)
 opposing_player_final_score = Hash.new(0)
@@ -325,7 +324,7 @@ FantasyInnings::OPPOSING_TEAM.each do |player|
 	opposing_player_final_fielding_score[player] = first_innings.player_fielding_score[player] + second_innings.player_fielding_score[player]
 	opposing_player_final_score[player] = opposing_player_final_batting_score[player] + opposing_player_final_fielding_score[player]
 	
-	puts player.strip + "|" + opposing_player_final_batting_score[player].to_s + "|" + opposing_player_final_fielding_score[player].to_s + "|" + opposing_player_final_score[player].to_s + "|"
+	printf "%-20s %-20s %-20s %-20s\n", player.strip, opposing_player_final_batting_score[player].to_s, opposing_player_final_fielding_score[player].to_s, opposing_player_final_score[player].to_s
 end	
 
 opposing_team_total = first_innings_opponent_score + second_innings_opponent_score
