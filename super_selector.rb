@@ -2,6 +2,7 @@ require 'open-uri'
 require 'rubygems'
 require 'nokogiri'
 require 'colorize'
+# require 'spreadsheet'
 
 class FantasyInnings
 
@@ -335,3 +336,24 @@ puts "*"*100
 final_total = (first_innings_our_score + second_innings_our_score) - (first_innings_opponent_score + second_innings_opponent_score)
 puts "MATCH AGGREGATE : ".bold + ((final_total < 0) ? final_total.to_s.red : final_total.to_s.green)
 
+# man_of_the_match_details = page.css(".match-details-block").css(".match-information").css(".normal")[2].text
+# man_of_the_match = man_of_the_match_details.split(" (")[0]
+# puts "Man of the Match : ".bold + man_of_the_match
+
+# if (FantasyInnings::OUR_TEAM.include? man_of_the_match)
+# 	match_aggregate = final_total + 50
+# else
+# 	match_aggregate = final_total - 50
+# end
+# puts "MATCH AGGREGATE : ".bold + ((match_aggregate < 0) ? match_aggregate.to_s.red : match_aggregate.to_s.green)
+
+# Writing to a spreadsheet
+# book = Spreadsheet::Workbook.new 
+# sheet1 = book.create_worksheet :name => "game_points"
+
+# sheet1[0,0] = "Player"
+# sheet1[0,1] = "Batting Score"
+# sheet1[0,2] = "Bowling Score"
+# sheet1[0,3] = "Total Score"
+
+# book.write 'fantasy_points.xls'
