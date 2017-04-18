@@ -64,11 +64,11 @@ class FantasyInnings
 	# MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082603.html?view=scorecard;wrappertype=none"
 
 	# RCB vs RPS
-	OUR_PLAYERS = "MS Dhoni, S Aravind, S Badree, P Negi, SR Watson, V Kohli, JD Unadkat, SN Thakur, MK Tiwary, DT Christian, AM Rahane"
-	OPPOSING_PLAYERS = "RD Chahar, AF Milne, YS Chahal, Imran Tahir, STR Binny, KM Jadhav, AB de Villiers, BA Stokes, SPD Smith, RA Tripathi, Mandeep Singh"
+	OUR_PLAYERS = "SR Watson, DR Smith, KM Jadhav, TM Head, P Negi, AF Milne, YS Chahal, RA Jadeja, KD Karthik, Basil Thampi, Ishan Kishan"
+	OPPOSING_PLAYERS = "CH Gayle, V Kohli, BB McCullum,  Mandeep Singh, STR Binny, S Aravind, SK Raina, AJ Finch, DS Kulkarni, AJ Tye, S Kaushik"
 	OUR_CAPTAIN = "SR Watson"
-	OPPONENT_CAPTAIN = "BA Stokes"
-	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082607.html?view=scorecard;wrappertype=none"
+	OPPONENT_CAPTAIN = "V Kohli"
+	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082610.html?view=scorecard;wrappertype=none"
 
 	OUR_TEAM = OUR_PLAYERS.split(', ')
 	OPPOSING_TEAM = OPPOSING_PLAYERS.split(', ')
@@ -148,25 +148,7 @@ class FantasyInnings
 		end
 
 		fielder_name.gsub!(/\W+/, '')  # Doing this for keepers where you have † symbol.
-		opposing_team_fielder_name = OPPOSING_TEAM.find {|s| s.include? fielder_name}
-		if (opposing_team_fielder_name != nil)
-			if (OPPONENT_CAPTAIN.include? fielder_name)
-				@opposing_team_fielding_total += 2*5
-				@player_fielding_score[opposing_team_fielder_name] += 2*5
-			else
-				@opposing_team_fielding_total += 5
-				@player_fielding_score[opposing_team_fielder_name] += 5
-			end
-		else
-			our_team_fielder_name = OUR_TEAM.find {|s| s.include? fielder_name}
-			if (OUR_TEAM.include? fielder_name)
-				@our_team_fielding_total += 2*5
-				@player_fielding_score[our_team_fielder_name] += 2*5
-			else
-				@our_team_fielding_total += 5
-				@player_fielding_score[our_team_fielder_name] += 5
-			end
-		end
+		update_score_for_fielder(fielder_name)
 
 		bowler_name = dismissal.split(' b ')[1]
 		if (bowler_name != nil)
@@ -223,47 +205,33 @@ class FantasyInnings
 			fielder_names = fielder_name.split('/')
 			fielder_names.each do |fn|
 				fn.gsub!(/\W+/, '')  # Doing this for keepers where you have † symbol.
-				opposing_team_fielder_name = OPPOSING_TEAM.find {|s| s.include? fn}
-
-				if (opposing_team_fielder_name != nil)
-					if (OPPONENT_CAPTAIN.include? opposing_team_fielder_name)
-						@opposing_team_fielding_total += 2*5
-						@player_fielding_score[opposing_team_fielder_name] += 2*5
-					else
-						@opposing_team_fielding_total += 5
-						@player_fielding_score[opposing_team_fielder_name] += 5
-					end
-				else
-					our_team_fielder_name = OUR_TEAM.find {|s| s.include? fn}
-					if (OUR_CAPTAIN.include? our_team_fielder_name)
-						@our_team_fielding_total += 2*5
-						@player_fielding_score[our_team_fielder_name] += 2*5
-					else
-						@our_team_fielding_total += 5
-						@player_fielding_score[our_team_fielder_name] += 5
-					end
-				end
+				update_score_for_fielder(fn, true)
 			end
 			return
 		end
 
+		update_score_for_fielder(fielder_name)
+	end
+
+	def update_score_for_fielder(fielder_name, split=false)
 		opposing_team_fielder_name = OPPOSING_TEAM.find {|s| s.include? fielder_name}
+		fielding_points = split ? 2.5 : 5
 		if (opposing_team_fielder_name != nil)
 			if (OPPONENT_CAPTAIN.include? opposing_team_fielder_name)
-				@opposing_team_fielding_total += 2*5
-				@player_fielding_score[opposing_team_fielder_name] += 2*5
+				@opposing_team_fielding_total += 2*fielding_points
+				@player_fielding_score[opposing_team_fielder_name] += 2*fielding_points
 			else
-				@opposing_team_fielding_total += 5
-				@player_fielding_score[opposing_team_fielder_name] += 5
+				@opposing_team_fielding_total += fielding_points
+				@player_fielding_score[opposing_team_fielder_name] += fielding_points
 			end
 		else
 			our_team_fielder_name = OUR_TEAM.find {|s| s.include? fielder_name}
 			if (OUR_CAPTAIN.include? our_team_fielder_name)
-				@our_team_fielding_total += 2*5
-				@player_fielding_score[our_team_fielder_name] += 2*5
+				@our_team_fielding_total += 2*fielding_points
+				@player_fielding_score[our_team_fielder_name] += 2*fielding_points
 			else
-				@our_team_fielding_total += 5
-				@player_fielding_score[our_team_fielder_name] += 5
+				@our_team_fielding_total += fielding_points
+				@player_fielding_score[our_team_fielder_name] += fielding_points
 			end
 		end
 	end
