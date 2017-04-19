@@ -211,7 +211,7 @@ class FantasyInnings
 		if(fielder_name.include? '/')
 			fielder_names = fielder_name.split('/')
 			fielder_names.each do |fn|
-				fn.gsub!(/\W+/, '')  # Doing this for keepers where you have † symbol.
+				fn.gsub!(/†/, '')  # Doing this for keepers where you have † symbol.
 				update_score_for_fielder(fn, true)
 			end
 			return
@@ -282,7 +282,8 @@ FantasyInnings::OUR_TEAM.each do |player|
 	player_final_fielding_score[player] = first_innings.player_fielding_score[player] + second_innings.player_fielding_score[player]
 	player_final_score[player] = player_final_batting_score[player] + player_final_fielding_score[player]
 	
-	printf "%-20s %-20s %-20s %-20s\n", player.strip, player_final_batting_score[player].to_s, player_final_fielding_score[player].to_s, player_final_score[player].to_s
+	player_name = (FantasyInnings::OUR_CAPTAIN.include? player) ? player.strip + "*" : player.strip
+	printf "%-20s %-20s %-20s %-20s\n", player_name, player_final_batting_score[player].to_s, player_final_fielding_score[player].to_s, player_final_score[player].to_s
 end
 
 our_team_total = first_innings_our_score + second_innings_our_score
@@ -302,7 +303,8 @@ FantasyInnings::OPPOSING_TEAM.each do |player|
 	opposing_player_final_fielding_score[player] = first_innings.player_fielding_score[player] + second_innings.player_fielding_score[player]
 	opposing_player_final_score[player] = opposing_player_final_batting_score[player] + opposing_player_final_fielding_score[player]
 	
-	printf "%-20s %-20s %-20s %-20s\n", player.strip, opposing_player_final_batting_score[player].to_s, opposing_player_final_fielding_score[player].to_s, opposing_player_final_score[player].to_s
+	player_name = (FantasyInnings::OPPONENT_CAPTAIN.include? player) ? player.strip + "*" : player.strip
+	printf "%-20s %-20s %-20s %-20s\n", player_name, opposing_player_final_batting_score[player].to_s, opposing_player_final_fielding_score[player].to_s, opposing_player_final_score[player].to_s
 end	
 
 opposing_team_total = first_innings_opponent_score + second_innings_opponent_score
