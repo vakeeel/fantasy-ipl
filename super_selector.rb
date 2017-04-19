@@ -64,11 +64,18 @@ class FantasyInnings
 	# MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082603.html?view=scorecard;wrappertype=none"
 
 	# RCB vs RPS
-	OUR_PLAYERS = "SR Watson, DR Smith, KM Jadhav, TM Head, P Negi, AF Milne, YS Chahal, RA Jadeja, KD Karthik, Basil Thampi, Ishan Kishan"
-	OPPOSING_PLAYERS = "CH Gayle, V Kohli, BB McCullum,  Mandeep Singh, STR Binny, S Aravind, SK Raina, AJ Finch, DS Kulkarni, AJ Tye, S Kaushik"
-	OUR_CAPTAIN = "SR Watson"
-	OPPONENT_CAPTAIN = "V Kohli"
-	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082610.html?view=scorecard;wrappertype=none"
+	# OUR_PLAYERS = "SR Watson, DR Smith, KM Jadhav, TM Head, P Negi, AF Milne, YS Chahal, RA Jadeja, KD Karthik, Basil Thampi, Ishan Kishan"
+	# OPPOSING_PLAYERS = "CH Gayle, V Kohli, BB McCullum,  Mandeep Singh, STR Binny, S Aravind, SK Raina, AJ Finch, DS Kulkarni, AJ Tye, S Kaushik"
+	# OUR_CAPTAIN = "SR Watson"
+	# OPPONENT_CAPTAIN = "V Kohli"
+	# MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082610.html?view=scorecard;wrappertype=none"
+
+	# SRH vs DD
+	OUR_PLAYERS = "SW Billings, Rashid Khan, SS Iyer, S Kaul, KK Nair, DA Warner, KS Williamson, CH Morris, J Yadav, Yuvraj Singh, PJ Cummins"
+	OPPOSING_PLAYERS = "NV Ojha, B Kumar, SV Samson, Mohammed Siraj, RR Pant, DJ Hooda, AD Mathews, MC Henriques, S Dhawan, A Mishra, Z Khan"
+	OUR_CAPTAIN = "CH Morris"
+	OPPONENT_CAPTAIN = "MC Henriques"
+	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082611.html?view=scorecard;wrappertype=none"
 
 	OUR_TEAM = OUR_PLAYERS.split(', ')
 	OPPOSING_TEAM = OPPOSING_PLAYERS.split(', ')
@@ -226,12 +233,14 @@ class FantasyInnings
 			end
 		else
 			our_team_fielder_name = OUR_TEAM.find {|s| s.include? fielder_name}
-			if (OUR_CAPTAIN.include? our_team_fielder_name)
-				@our_team_fielding_total += 2*fielding_points
-				@player_fielding_score[our_team_fielder_name] += 2*fielding_points
-			else
-				@our_team_fielding_total += fielding_points
-				@player_fielding_score[our_team_fielder_name] += fielding_points
+			if (our_team_fielder_name != nil)			
+				if (OUR_CAPTAIN.include? our_team_fielder_name)
+					@our_team_fielding_total += 2*fielding_points
+					@player_fielding_score[our_team_fielder_name] += 2*fielding_points
+				else
+					@our_team_fielding_total += fielding_points
+					@player_fielding_score[our_team_fielder_name] += fielding_points
+				end
 			end
 		end
 	end
