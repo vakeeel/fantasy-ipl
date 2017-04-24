@@ -71,11 +71,32 @@ class FantasyInnings
 	# MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082610.html?view=scorecard;wrappertype=none"
 
 	# SRH vs DD
-	OUR_PLAYERS = "SW Billings, Rashid Khan, SS Iyer, S Kaul, KK Nair, DA Warner, KS Williamson, CH Morris, J Yadav, Yuvraj Singh, PJ Cummins"
-	OPPOSING_PLAYERS = "NV Ojha, B Kumar, SV Samson, Mohammed Siraj, RR Pant, DJ Hooda, AD Mathews, MC Henriques, S Dhawan, A Mishra, Z Khan"
-	OUR_CAPTAIN = "CH Morris"
-	OPPONENT_CAPTAIN = "MC Henriques"
-	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082611.html?view=scorecard;wrappertype=none"
+	# OUR_PLAYERS = "SW Billings, Rashid Khan, SS Iyer, S Kaul, KK Nair, DA Warner, KS Williamson, CH Morris, J Yadav, Yuvraj Singh, PJ Cummins"
+	# OPPOSING_PLAYERS = "NV Ojha, B Kumar, SV Samson, Mohammed Siraj, RR Pant, DJ Hooda, AD Mathews, MC Henriques, S Dhawan, A Mishra, Z Khan"
+	# OUR_CAPTAIN = "CH Morris"
+	# OPPONENT_CAPTAIN = "MC Henriques"
+	# MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082611.html?view=scorecard;wrappertype=none"
+
+	# MI vs KXI
+	# OUR_PLAYERS = "SE Marsh, AR Patel, PA Patel, N Rana, Swapnil Singh, MM Sharma, KA Pollard, HH Pandya, Harbhajan Singh, SL Malinga, JJ Bumrah"
+	# OPPOSING_PLAYERS = "HM Amla, WP Saha, Gurkeerat Singh, GJ Maxwell, Sandeep Sharma, MP Stoinis, JC Buttler, RG Sharma, KH Pandya, I Sharma, MJ McClenaghan"
+	# OUR_CAPTAIN = "JJ Bumrah"
+	# OPPONENT_CAPTAIN = "KH Pandya"
+	# MATCH_URL = "http://www.espncricinfo.com/ci/engine/match/1082612.html?view=scorecard;wrappertype=none"
+
+	# MI vs KXI
+	# OUR_PLAYERS = "G Gambhir, BB McCullum, YK Pathan, Shakib Al Hasan, AJ Finch, CR Woakes, NM Coulter-Nile, Kuldeep Yadav, P Kumar, Ishan Kishan, DS Kulkarni"
+	# OPPOSING_PLAYERS = "DR Smith, RV Uthappa, SP Narine, MK Pandey, SK Raina, SA Yadav, KD Karthik, RA Jadeja, JP Faulkner, Basil Thampi, UT Yadav"
+	# OUR_CAPTAIN = "NM Coulter-Nile"
+	# OPPONENT_CAPTAIN = "JP Faulkner"
+	# MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082613.html?view=scorecard;wrappertype=none"
+
+	# RCB vs KKR
+	OUR_PLAYERS = "G Gambhir, KM Jadhav, STR Binny, S Aravind, YK Pathan, SA Yadav, NM Coulter-Nile, Kuldeep Yadav, S Badree, TS Mills, AB de Villiers"
+	OPPOSING_PLAYERS = "CH Gayle, V Kohli, Mandeep Singh, MK Pandey, YS Chahal, P Negi, RV Uthappa, CR Woakes, C de Grandhomme, SP Narine, UT Yadav"
+	OUR_CAPTAIN = "TS Mills"
+	OPPONENT_CAPTAIN = "V Kohli"
+	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082617.html?view=scorecard;wrappertype=none"
 
 	OUR_TEAM = OUR_PLAYERS.split(', ')
 	OPPOSING_TEAM = OPPOSING_PLAYERS.split(', ')
@@ -149,15 +170,22 @@ class FantasyInnings
 	end	
 
 	def update_scores_for_catch_or_stumping(dismissal)
-		fielder_name = dismissal.split(' ')[1]
-		if (fielder_name == '&') 
-			fielder_name = dismissal.split(' ').last
+		involved_players = dismissal.split(' b ')
+
+		fielder_name = involved_players[0]
+		fielder_name.gsub!(/†/, '')  # Doing this for keepers where you have † symbol.
+
+		if (fielder_name.include? '&') 
+			fielder_name = dismissal.split(' & ').last
+		elsif (fielder_name.include? 'c ')
+			fielder_name = fielder_name.split('c ').last
+		elsif (fielder_name.include? 'st ')	
+			fielder_name = fielder_name.split('st ').last
 		end
 
-		fielder_name.gsub!(/\W+/, '')  # Doing this for keepers where you have † symbol.
 		update_score_for_fielder(fielder_name)
 
-		bowler_name = dismissal.split(' b ')[1]
+		bowler_name = involved_players[1]
 		if (bowler_name != nil)
 			opposing_team_bowler_name = OPPOSING_TEAM.find {|s| s.include? bowler_name}
 			if (opposing_team_bowler_name != nil)
