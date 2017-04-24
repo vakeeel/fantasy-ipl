@@ -1,0 +1,35 @@
+<h1>Editing player</h1>
+
+<%= form_for ([@player.team, @player]) do |player| %>
+
+    <% if @player.errors.any? %>
+        <div id='error_explanation'>
+          <h2>
+            <%= pluralize(@player.errors.count, 'error') %> prohibited
+            this player from being updated:
+          </h2>
+          <ul>
+            <% @player.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= player.label :name %><br>
+      <%= player.text_field :name %>
+    </p>
+
+    <p>
+      <%= player.label :role %><br>
+      <%= player.select :role, Player.roles.keys.map { |w| [w.humanize, w] } %>
+    </p>
+
+    <p>
+      <%= player.submit %>
+    </p>
+
+<% end %>
+
+<%= link_to 'Back', team_path %>

@@ -1,0 +1,14 @@
+<p>
+  <strong>Player:</strong>
+  <%= player.name %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= player.role %>
+</p>
+
+<%= link_to 'Edit', edit_team_player_path(player.team, player) %> |
+<%= link_to 'Remove Player', [player.team, player],
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>

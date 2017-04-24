@@ -1,0 +1,13 @@
+<%= form_for([@team, @team.players.build]) do |f| %>
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :role %><br>
+      <%= f.select :role, Player.roles.keys.map { |w| [w.humanize, w] } %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>

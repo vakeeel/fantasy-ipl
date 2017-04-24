@@ -6,6 +6,16 @@ require 'colorize'
 
 class FantasyInnings
 
+#RPS: "AM Rahane, BA Stokes, AB Dinda, RA Tripathi, A Zampa, MA Agarwal, MS Dhoni, R Bhatia, DL Chahar, Imran Tahir, F du Plessis, LH Ferguson, RD Chahar, SN Thakur, MK Tiwary, Ankit Sharma"
+#DD: "A Tare, SW Billings, KK Nair, CJ Anderson, Z Khan, S Nadeem, SV Samson, RR Pant, CH Morris, A Mishra, PJ Cummins, SS Iyer, J Yadav, AD Mathews"
+#KXIP: "GJ Maxwell, M Vohra, DA Miller, MM Sharma, VR Aaron, Vishnu Vinod, HM Amla, AR Patel, WP Saha, MP Stoinis, Sandeep Sharma"
+#RCB: "SR Watson, AB de Villiers, Mandeep Singh, TS Mills, YS Chahal, KM Jadhav, B Stanlake, P Negi, STR Binny, Iqbal Abdulla, T Natarajan"
+#MI: "JC Buttler, KA Pollard, HH Pandya, JJ Bumrah, PA Patel, RG Sharma, KH Pandya, MJ McClenaghan, SL Malinga, Harbhajan Singh, N Rana"
+#KKR: "MK Pandey, YK Pathan, SA Yadav, SP Narine, Kuldeep Yadav, TA Boult, G Gambhir, RV Uthappa, CA Lynn, CR Woakes, AS Rajpoot"
+#GL: "AJ Finch, KD Karthik, RA Jadeja, Ishan Kishan, P Kumar, DR Smith, BB McCullum, SK Raina, Basil Thampi, AJ Tye, SB Jakati"
+#SRH: "Rashid Khan, S Kaul, DA Warner, KS Williamson, Yuvraj Singh, NV Ojha, B Kumar, Mohammed Siraj, DJ Hooda, MC Henriques, S Dhawan"
+
+
 	# RPS VS DD
 	# OUR_TEAM = "F du Plessis, SV Samson, MA Agarwal, RR Pant, CH Morris, A Mishra, PJ Cummins, MS Dhoni, R Bhatia, DL Chahar, Imran Tahir"
 	# OPPOSING_TEAM = "AM Rahane, A Tare, SW Billings, KK Nair, BA Stokes, CJ Anderson, A Zampa, Z Khan, S Nadeem, AB Dinda, RA Tripathi"
@@ -84,7 +94,7 @@ class FantasyInnings
 	# OPPONENT_CAPTAIN = "KH Pandya"
 	# MATCH_URL = "http://www.espncricinfo.com/ci/engine/match/1082612.html?view=scorecard;wrappertype=none"
 
-	# MI vs KXI
+	# KKR vs GL
 	# OUR_PLAYERS = "G Gambhir, BB McCullum, YK Pathan, Shakib Al Hasan, AJ Finch, CR Woakes, NM Coulter-Nile, Kuldeep Yadav, P Kumar, Ishan Kishan, DS Kulkarni"
 	# OPPOSING_PLAYERS = "DR Smith, RV Uthappa, SP Narine, MK Pandey, SK Raina, SA Yadav, KD Karthik, RA Jadeja, JP Faulkner, Basil Thampi, UT Yadav"
 	# OUR_CAPTAIN = "NM Coulter-Nile"
