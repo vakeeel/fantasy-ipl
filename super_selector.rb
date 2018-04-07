@@ -150,8 +150,9 @@ class FantasyInnings
 			if index == (trs.size - 4)
 				break;
 			end	
-			batsman_name = tr.css(".cell").css(".batsmen").css("a").text
-			runs = tr.css(".runs")[0].text.to_i
+
+			batsman_name = tr.css(".wrap").css(".batsmen").css(".cell").css(".batsmen").css("a").text
+			runs = tr.css(".wrap").css(".batsmen").css(".cell").css(".runs")[0].text.to_i
 
 			if (OUR_TEAM.include? batsman_name) 			
 				if (OUR_CAPTAIN.include? batsman_name)
