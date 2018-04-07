@@ -171,10 +171,9 @@ class FantasyInnings
 				end
 			end
 
-			dismissal = tr.css(".commentary").css("a").text.strip!
-			if dismissal != nil
-				dismissal_infos << dismissal
-			end	
+			dismissal = tr.css(".commentary").css("a").text
+			dismissal.strip!
+			dismissal_infos << dismissal
 		end
 
 		puts "Our team batting score: " + @our_team_batting_total.to_s
@@ -294,7 +293,7 @@ puts "OPPOSING TEAM : ".bold + FantasyInnings::OPPOSING_PLAYERS
 puts "*"*100
 
 page = Nokogiri::HTML(open(FantasyInnings::MATCH_URL).read)
-batting_tables = page.css(".scorecard-section").css(".batsmen")
+batting_tables = page.css(".scorecard-section")
 puts "FIRST INNINGS: ".cyan.bold
 first_innings = FantasyInnings.new
 
@@ -306,7 +305,7 @@ first_innings_our_score, first_innings_opponent_score = first_innings.read_table
 puts "SECOND INNINGS: ".cyan.bold
 second_innings = FantasyInnings.new
 
-second_innings_records = batting_tables[1].css(".flex-row")
+second_innings_records = batting_tables[2].css(".flex-row")
 second_innings_our_score, second_innings_opponent_score = second_innings.read_table_rows(second_innings_records)
 
 puts "*"*100
