@@ -102,11 +102,11 @@ class FantasyInnings
 	# MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082613.html?view=scorecard;wrappertype=none"
 
 	# RCB vs KKR
-	OUR_PLAYERS = "G Gambhir, KM Jadhav, STR Binny, S Aravind, YK Pathan, SA Yadav, NM Coulter-Nile, Kuldeep Yadav, S Badree, TS Mills, AB de Villiers"
-	OPPOSING_PLAYERS = "CH Gayle, V Kohli, Mandeep Singh, MK Pandey, YS Chahal, P Negi, RV Uthappa, CR Woakes, C de Grandhomme, SP Narine, UT Yadav"
-	OUR_CAPTAIN = "TS Mills"
-	OPPONENT_CAPTAIN = "V Kohli"
-	MATCH_URL = "http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082617.html?view=scorecard;wrappertype=none"
+	OUR_PLAYERS = "Ishan Kishan †, E Lewis, DL Chahar, AT Rayudu, KM Jadhav, MS Dhoni †, DJ Bravo, Harbhajan Singh, Imran Tahir, KA Pollard, MJ McClenaghan"
+	OPPOSING_PLAYERS = "SR Watson, RG Sharma, SA Yadav, SK Raina, RA Jadeja, MA Wood, M Markande, Mustafizur Rahman, HH Pandya, KH Pandya, JJ Bumrah"
+	OUR_CAPTAIN = "DJ Bravo"
+	OPPONENT_CAPTAIN = "RG Sharma"
+	MATCH_URL = "http://www.espncricinfo.com/series/8048/scorecard/1136561/mumbai-indians-vs-chennai-super-kings-1st-match-indian-premier-league-2018"
 
 	OUR_TEAM = OUR_PLAYERS.split(', ')
 	OPPOSING_TEAM = OPPOSING_PLAYERS.split(', ')
@@ -146,11 +146,12 @@ class FantasyInnings
 
 	def get_dismissal_infos(trs)
 		dismissal_infos = []
-
-		trs.each do |tr|
-			batsman_name_row = tr.css(".batsman-name").css("a")
-			batsman_name = batsman_name_row.text
-			runs = tr.css(".bold").text.to_i
+		trs.each_with_index do |tr, index|
+			if index == (trs.size - 4)
+				break;
+			end	
+			batsman_name = tr.css(".cell").css(".batsmen").css("a").text
+			runs = tr.css(".runs")[0].text.to_i
 
 			if (OUR_TEAM.include? batsman_name) 			
 				if (OUR_CAPTAIN.include? batsman_name)
@@ -170,7 +171,10 @@ class FantasyInnings
 				end
 			end
 
-			dismissal_infos << tr.css(".dismissal-info").text.strip!
+			dismissal = tr.css(".commentary").css("a").text.strip!
+			if dismissal != nil
+				dismissal_infos << dismissal
+			end	
 		end
 
 		puts "Our team batting score: " + @our_team_batting_total.to_s
@@ -289,14 +293,12 @@ puts "OPPOSING TEAM : ".bold + FantasyInnings::OPPOSING_PLAYERS
 
 puts "*"*100
 
-"http://www.espncricinfo.com/indian-premier-league-2017/engine/match/1082600.html?view=scorecard;wrappertype=none"
-page = Nokogiri::HTML(open(FantasyInnings::MATCH_URL))
-batting_tables = page.css(".full-scorecard-block").css(".batting-table")
-
+page = Nokogiri::HTML(open(FantasyInnings::MATCH_URL).read)
+batting_tables = page.css(".scorecard-section").css(".batsmen")
 puts "FIRST INNINGS: ".cyan.bold
 first_innings = FantasyInnings.new
 
-first_innings_records = batting_tables[0].css("tr:not(.dismissal-detail)").css("tr:not(.tr-heading)").css("tr:not(.extra-wrap)").css("tr:not(.total-wrap)")
+first_innings_records = batting_tables[0].css(".flex-row")
 first_innings_our_score, first_innings_opponent_score = first_innings.read_table_rows(first_innings_records)
 
 # puts "*"*100
@@ -304,7 +306,7 @@ first_innings_our_score, first_innings_opponent_score = first_innings.read_table
 puts "SECOND INNINGS: ".cyan.bold
 second_innings = FantasyInnings.new
 
-second_innings_records = batting_tables[1].css("tr:not(.dismissal-detail)").css("tr:not(.tr-heading)").css("tr:not(.extra-wrap)").css("tr:not(.total-wrap)")
+second_innings_records = batting_tables[1].css(".flex-row")
 second_innings_our_score, second_innings_opponent_score = second_innings.read_table_rows(second_innings_records)
 
 puts "*"*100
