@@ -2,7 +2,7 @@ our_team:
   players: "MA Agarwal, G Gambhir (c), KK Nair, DA Miller, AJ Tye, MM Sharma, Mujeeb Ur Rahman, CH Morris, V Shankar, A Mishra, TA Boult"
   power_player: "CH Morris"
 opposing_team:
-  players:  "C Munro, KL Rahul †, Yuvraj Singh, MP Stoinis, AR Patel, R Ashwin (c), RR Pant †, SS Iyer, DT Christian, Mohammad Shami, R Tewatia"
+  players:  "C Munro, KL Rahul †, Yuvraj Singh, MP Stoinis, AR Patel, R Ashwin (c), RR Pant †, SS Iyer, DT Christian, Mohammed Shami, R Tewatia"
   power_player: "MP Stoinis"
 game:  
   match_url: "http://www.espncricinfo.com/series/8048/scorecard/1136562/kings-xi-punjab-vs-delhi-daredevils-2nd-match-indian-premier-league-2018"
