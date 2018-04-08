@@ -337,7 +337,7 @@ puts "Our Team Total : #{our_team_game_total}".blue.bold
 puts "*"*100
 
 puts "Opposing Team".colorize(:color => :white, :background => :black).bold
-printf "%-20s %-20s %-20s %-20s\n", "Player", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
+printf "%-20s %-20s %-20s %-20s %-20s\n", "Player", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
 
 opposing_player_final_batting_score = Hash.new(0)
 opposing_player_final_bowling_score = Hash.new(0)
@@ -357,33 +357,29 @@ end
 opposing_team_game_total = first_innings.opposing_team_total + second_innings.opposing_team_total
 puts "Opposing Team Total : #{opposing_team_game_total}".blue.bold
 
+man_of_the_match = game_config[:game][:mom]
+if (man_of_the_match != nil)
+	if (our_team[:players].split(", ").include? man_of_the_match) 			
+		if (our_team[:power_player].include? man_of_the_match)
+			our_team_game_total += 2*30
+		else	
+			our_team_game_total += 30
+		end
+	elsif (opposing_team[:players].split(", ").include? man_of_the_match)
+		if (opposing_team[:power_player].include? man_of_the_match)
+			opposing_team_game_total += 2*30
+		else	
+			opposing_team_game_total += 30
+		end
+	end
+end
+
 puts "*"*100	
 
 final_game_total = our_team_game_total - opposing_team_game_total
-puts "MATCH AGGREGATE : ".bold + ((final_game_total < 0) ? final_game_total.to_s.red : final_game_total.to_s.green)
+puts "Man Of The Match: ".bold + man_of_the_match
+puts "MATCH AGGREGATE(with mom points) : ".bold + ((final_game_total < 0) ? final_game_total.to_s.red : final_game_total.to_s.green)
 
-mom_div = page.css(".match-detail-container").css(".match-detail--item")[2].css(".match-detail--right")
-if (mom_div != nil)
-	man_of_the_match = mom_div.text
-	puts 'MAN OF THE MATCH: '.bold + man_of_the_match.to_s
-	# if (FantasyInnings::OUR_TEAM.include? man_of_the_match) 			
-	# 	if (FantasyInnings::OUR_CAPTAIN.include? man_of_the_match)
-	# 		first_innings.our_team_batting_total += 2*30
-	# 		first_innings.player_batting_score[man_of_the_match] = 2*30
-	# 	else	
-	# 		first_innings.our_team_batting_total += 30
-	# 		first_innings.player_batting_score[man_of_the_match] = 30
-	# 	end
-	# elsif (FantasyInnings::OPPOSING_TEAM.include? man_of_the_match)
-	# 	if (FantasyInnings::OPPONENT_CAPTAIN.include? man_of_the_match)
-	# 		first_innings.opposing_team_batting_total += 2*runs
-	# 		first_innings.player_batting_score[man_of_the_match] = 2*runs
-	# 	else	
-	# 		first_innings.opposing_team_batting_total += runs
-	# 		first_innings.player_batting_score[man_of_the_match] = runs
-	# 	end
-	# end
-end
 # man_of_the_match = man_of_the_match_details.split(" (")[0]
 # puts "Man of the Match : ".bold + man_of_the_match
 

@@ -4,6 +4,7 @@ game:
   first_innings_fileding_team: "kkr"
   second_innings_fileding_team: "rcb"
   match_url: "http://www.espncricinfo.com/series/8048/scorecard/1136563/kolkata-knight-riders-vs-royal-challengers-bangalore-3rd-match-indian-premier-league-2018"
+  mom: "SP Narine"
 vv:
   our_team: 
     players: "BB McCullum, AB de Villiers, AD Russell, KD Karthik (c) †, SN Khan, RK Singh, N Rana, UT Yadav, YS Chahal, R Vinay Kumar, Kuldeep Yadav"
