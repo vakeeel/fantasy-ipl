@@ -6,6 +6,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'yaml'
 require 'optparse'
+require 'active_record'
 
 options = {:team => nil, :match => nil}
 
@@ -39,18 +40,15 @@ class FantasyInnings
 	attr_accessor :batting_records, :bowling_records, :our_team_batting_total, :our_team_bowling_total, 
 	:our_team_fielding_total, :opposing_team_batting_total, :opposing_team_bowling_total, :opposing_team_fielding_total, 
 	:player_batting_score, :player_bowling_score, :player_fielding_score, :our_team_total, :opposing_team_total,
-	:our_team, :opposing_team
+	:our_team, :opposing_team, :fielding_team
 
-	def initialize(batting_card, bowling_card, our_team, opposing_team)
+	def initialize(batting_card, bowling_card, our_team, opposing_team, fielding_team)
 		@batting_records = batting_card.css(".flex-row").css(".wrap.batsmen")
 		@bowling_records = bowling_card.css("tbody").css("tr")
 
-		@our_team = {}
-		@our_team[:players] = our_team[:players].split(', ')
-		@our_team[:power_player] = our_team[:power_player]
-		@opposing_team = {}
-		@opposing_team[:players] = opposing_team[:players].split(', ')
-		@opposing_team[:power_player] = opposing_team[:power_player]
+		@our_team = get_team(our_team)
+		@opposing_team = get_team(opposing_team)
+		@fielding_team = fielding_team.split(", ")
 
 		@our_team_batting_total = 0
 		@opposing_team_batting_total = 0
@@ -91,6 +89,14 @@ class FantasyInnings
 	end
 
 	private 
+
+	def get_team(config)
+		team = {}
+		team[:players] = config[:players].split(', ')
+		team[:power_player] = config[:power_player]
+
+		team
+	end	
 
 	def add_bonus_points(team, is_our_team = true)
 		team[:players].each do |player_name|
@@ -245,6 +251,8 @@ class FantasyInnings
 	end
 
 	def update_score_for_fielder(fielder_name, split = false)
+		fielder_name = @fielding_team.find { |fielder| fielder.include? fielder_name.to_s }
+
 		opposing_team_fielder_name = @opposing_team[:players].find {|s| s.include? fielder_name}
 		fielding_points = split ? 2.5 : 5
 		if (opposing_team_fielder_name != nil)
@@ -283,7 +291,8 @@ puts "*"*100
 page = Nokogiri::HTML(open(game_config[:game][:match_url]).read)
 
 puts "FIRST INNINGS: ".cyan.bold
-first_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[0], page.css(".scorecard-section.bowling")[0], our_team, opposing_team)
+first_innings_fileding_team = game_config[:game][game_config[:game][:first_innings_fileding_team].to_sym]
+first_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[0], page.css(".scorecard-section.bowling")[0], our_team, opposing_team, first_innings_fileding_team)
 fi_aggregate = first_innings.aggregate.to_s
 
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
@@ -294,7 +303,8 @@ puts "First Innings Aggregate : #{fi_aggregate}".blue.bold
 puts "*"*100
 
 puts "SECOND INNINGS: ".cyan.bold
-second_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[1], page.css(".scorecard-section.bowling")[1], our_team, opposing_team)
+second_innings_fileding_team = game_config[:game][game_config[:game][:second_innings_fileding_team].to_sym]
+second_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[1], page.css(".scorecard-section.bowling")[1], our_team, opposing_team, second_innings_fileding_team)
 si_aggregate = second_innings.aggregate.to_s
 
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"

@@ -1,4 +1,8 @@
 game:  
+  kkr: "SP Narine, AD Russell, KD Karthik (c) †, RV Uthappa, CA Lynn, RK Singh, N Rana, R Vinay Kumar, Kuldeep Yadav, PP Chawla, MG Johnson"
+  rcb: "V Kohli (c), BB McCullum, AB de Villiers, Q de Kock †, SN Khan, Mandeep Singh, CR Woakes, UT Yadav, YS Chahal, Washington Sundar, K Khejroliya"
+  first_innings_fileding_team: "kkr"
+  second_innings_fileding_team: "rcb"
   match_url: "http://www.espncricinfo.com/series/8048/scorecard/1136563/kolkata-knight-riders-vs-royal-challengers-bangalore-3rd-match-indian-premier-league-2018"
 vv:
   our_team: 
