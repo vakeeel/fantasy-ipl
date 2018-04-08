@@ -29,8 +29,8 @@ class FantasyInnings
 		@player_fielding_score = Hash.new(0)
 	end
 
-	def aggregate
-		dismissal_infos = get_dismissal_infos
+	def aggregate(players)
+		dismissal_infos = get_dismissal_infos(players)
 
 		dismissal_infos.each do |dismissal|
 			if ((dismissal.include? 'st ') || (dismissal.include? 'c '))
@@ -111,14 +111,14 @@ class FantasyInnings
 		@player_batting_score[player_name] += points		
 	end	
 
-	def get_dismissal_infos
+	def get_dismissal_infos(players)
 		dismissal_infos = []
 		
 		@batting_records.each do |batting_record|
 			batsman_name = batting_record.css(".cell.batsmen").css("a").text
 			runs = batting_record.css(".cell.runs")[0].text.to_i
 
-			if (OUR_TEAM.include? batsman_name) 			
+			if (players.include? batsman_name) 			
 				if (OUR_CAPTAIN.include? batsman_name)
 					@our_team_batting_total += 2*runs
 					@player_batting_score[batsman_name] = 2*runs
@@ -246,77 +246,59 @@ class Team
 	end	
 
 	def total
+		fi = first_innings_total
+		si = second_innings_total
+
+		puts "*"*100
+
+		printf "%-20s %-20s %-20s %-20s %-20s\n", "Player", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
+		player_final_batting_score = Hash.new(0)
+		player_final_bowling_score = Hash.new(0)
+		player_final_fielding_score = Hash.new(0)
+		player_final_score = Hash.new(0)
+
+		@players.each do |player|
+			player_final_batting_score[player] = fi.player_batting_score[player] + si.player_batting_score[player]
+			player_final_bowling_score[player] = fi.player_bowling_score[player] + si.player_bowling_score[player]
+			player_final_fielding_score[player] = fi.player_fielding_score[player] + si.player_fielding_score[player]
+
+			player_final_score[player] = player_final_batting_score[player] + player_final_bowling_score[player] + player_final_fielding_score[player]
+			
+			player_name = (@power_player.include? player) ? player.strip + "*" : player.strip
+			printf "%-20s %-20s %-20s %-20s %-20s\n", player_name, player_final_batting_score[player].to_s, player_final_bowling_score[player].to_s, player_final_fielding_score[player].to_s, player_final_score[player].to_s
+		end
 
 	end	
 
+	private 
+
 	def first_innings_total
-		puts "FIRST INNINGS: ".cyan.bold
-		puts "First Innings Aggregate : ".bold + FantasyInnings.new(@scorecard[0]).aggregate.to_s
+		puts "FIRST INNINGS: ".colorize(:color => :white, :background => :black).bold
+		first_innings = FantasyInnings.new(@scorecard[0])
+		puts "First Innings Aggregate : ".bold + first_innings.aggregate.to_s
+
+		first_innings
 	end
 	
 	def second_innings_total
-		puts "SECOND INNINGS: ".cyan.bold
-		puts "Second Innings Aggregate : ".bold + FantasyInnings.new(@scorecard[2]).aggregate.to_s
+		puts "SECOND INNINGS: ".colorize(:color => :white, :background => :black).bold
+		second_innings = FantasyInnings.new(@scorecard[2])
+		puts "Second Innings Aggregate : ".bold + second_innings.aggregate.to_s
+
+		second_innings
 	end	
 end	
-
-puts "*"*100
 
 game_config = YAML.load(ERB.new(File.read('game_config.yml')).result).deep_symbolize_keys
 page = Nokogiri::HTML(open(game_config[:game][:match_url]).read)
 
 our_team = Team.new(game_config[:our_team], page.css(".scorecard-section"))
 opposing_team = Team.new(game_config[:opposing_team], page.css(".scorecard-section"))
+our_team.total
+opposing_team.total
 
-puts "*"*100
-
-puts "Our Team".colorize(:color => :white, :background => :black).bold
-printf "%-20s %-20s %-20s %-20s %-20s\n", "Player", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
-player_final_batting_score = Hash.new(0)
-player_final_bowling_score = Hash.new(0)
-player_final_fielding_score = Hash.new(0)
-player_final_score = Hash.new(0)
-
-FantasyInnings::OUR_TEAM.each do |player|
-	player_final_batting_score[player] = first_innings.player_batting_score[player] + second_innings.player_batting_score[player]
-	player_final_bowling_score[player] = first_innings.player_bowling_score[player] + second_innings.player_bowling_score[player]
-	player_final_fielding_score[player] = first_innings.player_fielding_score[player] + second_innings.player_fielding_score[player]
-	player_final_score[player] = player_final_batting_score[player] + player_final_bowling_score[player] + player_final_fielding_score[player]
-	
-	player_name = (FantasyInnings::OUR_CAPTAIN.include? player) ? player.strip + "*" : player.strip
-	printf "%-20s %-20s %-20s %-20s %-20s\n", player_name, player_final_batting_score[player].to_s, player_final_bowling_score[player].to_s, player_final_fielding_score[player].to_s, player_final_score[player].to_s
-end
-
-our_team_game_total = first_innings.our_team_total + second_innings.our_team_total
-puts "Our Team Total : #{our_team_game_total}".blue.bold
-
-puts "*"*100
-
-puts "Opposing Team".colorize(:color => :white, :background => :black).bold
-printf "%-20s %-20s %-20s %-20s\n", "Player", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
-
-opposing_player_final_batting_score = Hash.new(0)
-opposing_player_final_bowling_score = Hash.new(0)
-opposing_player_final_fielding_score = Hash.new(0)
-opposing_player_final_score = Hash.new(0)
-
-FantasyInnings::OPPOSING_TEAM.each do |player|
-	opposing_player_final_batting_score[player] = first_innings.player_batting_score[player] + second_innings.player_batting_score[player]
-	opposing_player_final_bowling_score[player] = first_innings.player_bowling_score[player] + second_innings.player_bowling_score[player]
-	opposing_player_final_fielding_score[player] = first_innings.player_fielding_score[player] + second_innings.player_fielding_score[player]
-	opposing_player_final_score[player] = opposing_player_final_batting_score[player] + opposing_player_final_bowling_score[player] + opposing_player_final_fielding_score[player]
-	
-	player_name = (FantasyInnings::OPPONENT_CAPTAIN.include? player) ? player.strip + "*" : player.strip
-	printf "%-20s %-20s %-20s %-20s %-20s\n", player_name, opposing_player_final_batting_score[player].to_s, opposing_player_final_bowling_score[player].to_s, opposing_player_final_fielding_score[player].to_s, opposing_player_final_score[player].to_s
-end	
-
-opposing_team_game_total = first_innings.opposing_team_total + second_innings.opposing_team_total
-puts "Opposing Team Total : #{opposing_team_game_total}".blue.bold
-
-puts "*"*100	
-
-final_game_total = our_team_game_total - opposing_team_game_total
-puts "MATCH AGGREGATE : ".bold + ((final_game_total < 0) ? final_game_total.to_s.red : final_game_total.to_s.green)
+# final_game_total = our_team.total - opposing_team.total
+# puts "MATCH AGGREGATE : ".bold + ((final_game_total < 0) ? final_game_total.to_s.red : final_game_total.to_s.green)
 
 mom_div = page.css(".match-detail-container").css(".match-detail--item")[2].css(".match-detail--right")
 if (mom_div != nil)
@@ -340,8 +322,6 @@ if (mom_div != nil)
 	# 	end
 	# end
 end
-man_of_the_match = man_of_the_match_details.split(" (")[0]
-puts "Man of the Match : ".bold + man_of_the_match
 
 # if (FantasyInnings::OUR_TEAM.include? man_of_the_match)
 # 	match_aggregate = final_total + 50

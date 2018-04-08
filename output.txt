@@ -1,0 +1,52 @@
+OUR TEAM : Ishan Kishan †, E Lewis, DL Chahar, AT Rayudu, KM Jadhav, MS Dhoni (c) †, DJ Bravo, Harbhajan Singh, Imran Tahir, KA Pollard, MJ McClenaghan
+OPPOSING TEAM : SR Watson, RG Sharma (c), SA Yadav, SK Raina, RA Jadeja, MA Wood, M Markande, Mustafizur Rahman, HH Pandya, KH Pandya, JJ Bumrah
+****************************************************************************************************
+FIRST INNINGS: 
+Our team batting score: 40
+Opposing team batting score: 136
+Our Team Bowling Score : 45
+Opposing Team Bowling Score : 50
+Our Team Fielding Score : 10
+Opposing Team Fielding Score : 5
+First Innings Aggregate : -96
+SECOND INNINGS: 
+Our team batting score: 197
+Opposing team batting score: 33
+Our Team Bowling Score : 20
+Opposing Team Bowling Score : 190
+Our Team Fielding Score : 10
+Opposing Team Fielding Score : 30
+Second Innings Aggregate : -6
+****************************************************************************************************
+Our Team
+Player               Batting Score        Bowling Score        Fielding Score       Total Score         
+Ishan Kishan †       40                   0                    5                    45                  
+E Lewis              0                    0                    5                    5                   
+DL Chahar            0                    25                   0                    25                  
+AT Rayudu            22                   0                    5                    27                  
+KM Jadhav            24                   0                    0                    24                  
+MS Dhoni (c) †       5                    0                    0                    5                   
+DJ Bravo*            156                  0                    0                    156                 
+Harbhajan Singh      8                    0                    5                    13                  
+Imran Tahir          2                    20                   0                    22                  
+KA Pollard           0                    0                    0                    0                   
+MJ McClenaghan       0                    20                   0                    20                  
+Our Team Total : 342
+****************************************************************************************************
+Opposing Team
+Player               Batting Score        Bowling Score        Fielding Score      
+SR Watson            16                   50                   0                    66                  
+RG Sharma (c)*       30                   0                    10                   40                  
+SA Yadav             43                   0                    5                    48                  
+SK Raina             4                    0                    0                    4                   
+RA Jadeja            12                   0                    0                    12                  
+MA Wood              1                    0                    5                    6                   
+M Markande           0                    80                   0                    80                  
+Mustafizur Rahman    0                    20                   5                    25                  
+HH Pandya            22                   70                   0                    92                  
+KH Pandya            41                   0                    5                    46                  
+JJ Bumrah            0                    20                   5                    25                  
+Opposing Team Total : 444
+****************************************************************************************************
+MATCH AGGREGATE : -102
+MAN OF THE MATCH: Dwayne Bravo
