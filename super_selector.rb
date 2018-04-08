@@ -5,6 +5,35 @@ require 'colorize'
 require 'active_support'
 require 'active_support/core_ext'
 require 'yaml'
+require 'optparse'
+
+options = {:team => nil, :match => nil}
+
+parser = OptionParser.new do|opts|
+	opts.banner = "Usage: super_selector.rb [options]"
+	opts.on('-t', '--team team', 'Team') do |team|
+		options[:team] = team.to_sym;
+	end
+
+	opts.on('-m', '--match match', 'Match') do |match|
+		options[:match] = match;
+	end
+
+	opts.on('-h', '--help', 'Displays Help') do
+		puts opts
+		exit
+	end
+end
+
+parser.parse!
+
+if options[:team] == nil
+    options[:team] = 'vv'.to_sym
+end
+
+if options[:match] == nil
+    options[:match] = 'kkr_rcb'
+end
 
 class FantasyInnings
 	attr_accessor :batting_records, :our_team_batting_total, :our_team_bowling_total, :our_team_fielding_total, 
@@ -236,11 +265,10 @@ class FantasyInnings
 	end
 end
 
-config_file = ARGV[0].nil? ? 'kkr_rcb' : ARGV[0]
-game_config = YAML.load(ERB.new(File.read("#{config_file}.yml")).result).deep_symbolize_keys
+game_config = YAML.load(ERB.new(File.read("#{options[:match]}.yml")).result).deep_symbolize_keys
 
-our_team = game_config[:vv][:our_team]
-opposing_team = game_config[:vv][:opposing_team]
+our_team = game_config[options[:team]][:our_team]
+opposing_team = game_config[options[:team]][:opposing_team]
 
 puts "OUR TEAM : ".bold + our_team[:players]
 puts "OPPOSING TEAM : ".bold + opposing_team[:players]
