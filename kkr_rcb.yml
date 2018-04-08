@@ -1,0 +1,23 @@
+game:  
+  match_url: "http://www.espncricinfo.com/series/8048/scorecard/1136563/kolkata-knight-riders-vs-royal-challengers-bangalore-3rd-match-indian-premier-league-2018"
+vv:
+  our_team: 
+    players: "BB McCullum, AB de Villiers, AD Russell, KD Karthik (c) †, SN Khan, RK Singh, N Rana, UT Yadav, YS Chahal, R Vinay Kumar, Kuldeep Yadav"
+    power_player: "AD Russell"
+  opposing_team:
+    players:  "V Kohli (c), SP Narine, Q de Kock †, RV Uthappa, CA Lynn, Mandeep Singh, CR Woakes, Washington Sundar, PP Chawla, MG Johnson, K Khejroliya"
+    power_player: "SP Narine"
+uday:
+  our_team: 
+    players: "SP Narine, AB de Villiers, CR Woakes, YS Chahal,  MG Johnson, Q de Kock †, UT Yadav, RV Uthappa, N Rana, SN Khan, RK Singh"
+    power_player: "SP Narine"
+  opposing_team:
+    players:  "BB McCullum, V Kohli (c), AD Russell, KD Karthik (c) †, R Vinay Kumar, Kuldeep Yadav, CA Lynn, Mandeep Singh, Washington Sundar, PP Chawla, K Khejroliya"
+    power_player: "AD Russell"   
+sai:
+  our_team: 
+    players: "V Kohli (c), AD Russell, UT Yadav, Q de Kock †, RV Uthappa, Kuldeep Yadav, K Khejroliya, Washington Sundar, R Vinay Kumar, N Rana, Mandeep Singh"
+    power_player: "Kuldeep Yadav"
+  opposing_team:
+    players:  "BB McCullum, SP Narine, CA Lynn, CR Woakes, PP Chawla, MG Johnson, AB de Villiers, KD Karthik (c) †, SN Khan, RK Singh, YS Chahal"
+    power_player: "BB McCullum"

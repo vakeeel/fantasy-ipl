@@ -236,11 +236,11 @@ class FantasyInnings
 	end
 end
 
-config_file = ARGV[0].nil? ? 'kxip_dd' : ARGV[0]
+config_file = ARGV[0].nil? ? 'kkr_rcb' : ARGV[0]
 game_config = YAML.load(ERB.new(File.read("#{config_file}.yml")).result).deep_symbolize_keys
 
-our_team = game_config[:our_team]
-opposing_team = game_config[:opposing_team]
+our_team = game_config[:vv][:our_team]
+opposing_team = game_config[:vv][:opposing_team]
 
 puts "OUR TEAM : ".bold + our_team[:players]
 puts "OPPOSING TEAM : ".bold + opposing_team[:players]
