@@ -36,13 +36,15 @@ if options[:match] == nil
 end
 
 class FantasyInnings
-	attr_accessor :batting_records, :our_team_batting_total, :our_team_bowling_total, :our_team_fielding_total, 
-	:opposing_team_batting_total, :opposing_team_bowling_total, :opposing_team_fielding_total, 
+	attr_accessor :batting_records, :bowling_records, :our_team_batting_total, :our_team_bowling_total, 
+	:our_team_fielding_total, :opposing_team_batting_total, :opposing_team_bowling_total, :opposing_team_fielding_total, 
 	:player_batting_score, :player_bowling_score, :player_fielding_score, :our_team_total, :opposing_team_total,
 	:our_team, :opposing_team
 
-	def initialize(batting_card, our_team, opposing_team)
+	def initialize(batting_card, bowling_card, our_team, opposing_team)
 		@batting_records = batting_card.css(".flex-row").css(".wrap.batsmen")
+		@bowling_records = bowling_card.css("tbody").css("tr")
+
 		@our_team = {}
 		@our_team[:players] = our_team[:players].split(', ')
 		@our_team[:power_player] = our_team[:power_player]
@@ -203,6 +205,9 @@ class FantasyInnings
 
 	def update_score_for_bowler(bowler_name, points)
 		if (bowler_name != nil)
+			bowler_tr = @bowling_records.find { |tr| tr.css("td").css("a").text.to_s.include?(bowler_name) }
+			bowler_name = bowler_tr.css("td").css("a").text.to_s
+
 			opposing_team_bowler_name = @opposing_team[:players].find {|s| s.include? bowler_name}
 			if (opposing_team_bowler_name != nil)
 				if (@opposing_team[:power_player].include? bowler_name)
@@ -278,7 +283,7 @@ puts "*"*100
 page = Nokogiri::HTML(open(game_config[:game][:match_url]).read)
 
 puts "FIRST INNINGS: ".cyan.bold
-first_innings = FantasyInnings.new(page.css(".scorecard-section")[0], our_team, opposing_team)
+first_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[0], page.css(".scorecard-section.bowling")[0], our_team, opposing_team)
 fi_aggregate = first_innings.aggregate.to_s
 
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
@@ -289,7 +294,7 @@ puts "First Innings Aggregate : #{fi_aggregate}".blue.bold
 puts "*"*100
 
 puts "SECOND INNINGS: ".cyan.bold
-second_innings = FantasyInnings.new(page.css(".scorecard-section")[2], our_team, opposing_team)
+second_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[1], page.css(".scorecard-section.bowling")[1], our_team, opposing_team)
 si_aggregate = second_innings.aggregate.to_s
 
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
