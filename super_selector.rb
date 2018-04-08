@@ -1,19 +1,12 @@
 require 'open-uri'
 require 'rubygems'
 require 'nokogiri'
+require 'active_support'
+require 'active_support/core_ext'
+require 'yaml'
 require 'colorize'
 
 class FantasyInnings
-	# MI vs CSK
-	OUR_PLAYERS = "Ishan Kishan †, E Lewis, DL Chahar, AT Rayudu, KM Jadhav, MS Dhoni (c) †, DJ Bravo, Harbhajan Singh, Imran Tahir, KA Pollard, MJ McClenaghan"
-	OPPOSING_PLAYERS = "SR Watson, RG Sharma (c), SA Yadav, SK Raina, RA Jadeja, MA Wood, M Markande, Mustafizur Rahman, HH Pandya, KH Pandya, JJ Bumrah"
-	OUR_TEAM = OUR_PLAYERS.split(', ')
-	OPPOSING_TEAM = OPPOSING_PLAYERS.split(', ')
-
-	OUR_CAPTAIN = "DJ Bravo"
-	OPPONENT_CAPTAIN = "RG Sharma (c)"
-	MATCH_URL = "http://www.espncricinfo.com/series/8048/scorecard/1136561/mumbai-indians-vs-chennai-super-kings-1st-match-indian-premier-league-2018"
-
 	attr_accessor :batting_records, :our_team_batting_total, :our_team_bowling_total, :our_team_fielding_total, 
 	:opposing_team_batting_total, :opposing_team_bowling_total, :opposing_team_fielding_total, 
 	:player_batting_score, :player_bowling_score, :player_fielding_score, :our_team_total, :opposing_team_total
@@ -243,30 +236,37 @@ class FantasyInnings
 	end
 end
 
-# class Team
-# 	attr_accessor :players
-# 	def initialize(team)
-# 		@
-# 	end	
+class Team
+	attr_accessor :players, :power_player, :scorecard
 
-# 	def total
+	def initialize(team, scorecard)
+		@players = team[:players].split(', ')
+		@power_player = team[:power_player]
+		@scorecard = scorecard
+	end	
 
-# 	end	
-# end	
-puts "OUR TEAM : ".bold + FantasyInnings::OUR_PLAYERS
-puts "OPPOSING TEAM : ".bold + FantasyInnings::OPPOSING_PLAYERS
+	def total
+
+	end	
+
+	def first_innings_total
+		puts "FIRST INNINGS: ".cyan.bold
+		puts "First Innings Aggregate : ".bold + FantasyInnings.new(@scorecard[0]).aggregate.to_s
+	end
+	
+	def second_innings_total
+		puts "SECOND INNINGS: ".cyan.bold
+		puts "Second Innings Aggregate : ".bold + FantasyInnings.new(@scorecard[2]).aggregate.to_s
+	end	
+end	
 
 puts "*"*100
 
-page = Nokogiri::HTML(open(FantasyInnings::MATCH_URL).read)
+game_config = YAML.load(ERB.new(File.read('game_config.yml')).result).deep_symbolize_keys
+page = Nokogiri::HTML(open(game_config[:game][:match_url]).read)
 
-puts "FIRST INNINGS: ".cyan.bold
-first_innings = FantasyInnings.new(page.css(".scorecard-section")[0])
-puts "First Innings Aggregate : ".bold + first_innings.aggregate.to_s
-
-puts "SECOND INNINGS: ".cyan.bold
-second_innings = FantasyInnings.new(page.css(".scorecard-section")[2])
-puts "Second Innings Aggregate : ".bold + second_innings.aggregate.to_s
+our_team = Team.new(game_config[:our_team], page.css(".scorecard-section"))
+opposing_team = Team.new(game_config[:opposing_team], page.css(".scorecard-section"))
 
 puts "*"*100
 
@@ -340,8 +340,8 @@ if (mom_div != nil)
 	# 	end
 	# end
 end
-# man_of_the_match = man_of_the_match_details.split(" (")[0]
-# puts "Man of the Match : ".bold + man_of_the_match
+man_of_the_match = man_of_the_match_details.split(" (")[0]
+puts "Man of the Match : ".bold + man_of_the_match
 
 # if (FantasyInnings::OUR_TEAM.include? man_of_the_match)
 # 	match_aggregate = final_total + 50

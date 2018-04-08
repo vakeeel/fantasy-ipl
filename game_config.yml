@@ -1,0 +1,8 @@
+our_team: 
+  players: "Ishan Kishan †, E Lewis, DL Chahar, AT Rayudu, KM Jadhav, MS Dhoni (c) †, DJ Bravo, Harbhajan Singh, Imran Tahir, KA Pollard, MJ McClenaghan"
+  power_player: "DJ Bravo"
+opposing_team:
+  players:  "SR Watson, RG Sharma (c), SA Yadav, SK Raina, RA Jadeja, MA Wood, M Markande, Mustafizur Rahman, HH Pandya, KH Pandya, JJ Bumrah"
+  power_player: "RG Sharma (c)"
+game:  
+  match_url: "http://www.espncricinfo.com/series/8048/scorecard/1136561/mumbai-indians-vs-chennai-super-kings-1st-match-indian-premier-league-2018"
