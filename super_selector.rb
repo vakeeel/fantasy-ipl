@@ -54,10 +54,6 @@ class FantasyInnings
 		add_bonus_points(@our_team)
 		add_bonus_points(@opposing_team, false)
 
-		puts "Our Team Bowling Score : " + @our_team_bowling_total.to_s
-		puts "Opposing Team Bowling Score : " + @opposing_team_bowling_total.to_s
-		puts "Our Team Fielding Score : " + @our_team_fielding_total.to_s
-		puts "Opposing Team Fielding Score : " + @opposing_team_fielding_total.to_s
 		@our_team_total = @our_team_batting_total + @our_team_bowling_total + @our_team_fielding_total
 		@opposing_team_total = @opposing_team_batting_total + @opposing_team_bowling_total + @opposing_team_fielding_total
 		return @our_team_total - @opposing_team_total
@@ -147,9 +143,6 @@ class FantasyInnings
 			dismissal.strip!
 			dismissal_infos << dismissal
 		end
-
-		puts "Our team batting score: " + @our_team_batting_total.to_s
-		puts "Opposing team batting score: " + @opposing_team_batting_total.to_s
 
 		dismissal_infos
 	end	
@@ -258,11 +251,23 @@ page = Nokogiri::HTML(open(game_config[:game][:match_url]).read)
 
 puts "FIRST INNINGS: ".cyan.bold
 first_innings = FantasyInnings.new(page.css(".scorecard-section")[0], our_team, opposing_team)
-puts "First Innings Aggregate : ".bold + first_innings.aggregate.to_s
+fi_aggregate = first_innings.aggregate.to_s
+
+printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
+printf "%-20s %-20s %-20s %-20s %-20s\n", "Our Team", first_innings.our_team_batting_total.to_s, first_innings.our_team_bowling_total.to_s, first_innings.our_team_fielding_total.to_s, first_innings.our_team_total.to_s
+printf "%-20s %-20s %-20s %-20s %-20s\n", "Opposing Team", first_innings.opposing_team_batting_total.to_s, first_innings.opposing_team_bowling_total.to_s, first_innings.opposing_team_fielding_total.to_s, first_innings.opposing_team_total.to_s
+puts "First Innings Aggregate : #{fi_aggregate}".blue.bold
+
+puts "*"*100
 
 puts "SECOND INNINGS: ".cyan.bold
 second_innings = FantasyInnings.new(page.css(".scorecard-section")[2], our_team, opposing_team)
-puts "Second Innings Aggregate : ".bold + second_innings.aggregate.to_s
+si_aggregate = second_innings.aggregate.to_s
+
+printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
+printf "%-20s %-20s %-20s %-20s %-20s\n", "Our Team", second_innings.our_team_batting_total.to_s, second_innings.our_team_bowling_total.to_s, second_innings.our_team_fielding_total.to_s, second_innings.our_team_total.to_s
+printf "%-20s %-20s %-20s %-20s %-20s\n", "Opposing Team", second_innings.opposing_team_batting_total.to_s, second_innings.opposing_team_bowling_total.to_s, second_innings.opposing_team_fielding_total.to_s, second_innings.opposing_team_total.to_s
+puts "Second Innings Aggregate : #{si_aggregate}".blue.bold
 
 puts "*"*100
 
