@@ -2,36 +2,42 @@ require 'open-uri'
 require 'rubygems'
 require 'nokogiri'
 require 'colorize'
-# require 'spreadsheet'
 
 class FantasyInnings
-	# RCB vs KKR
+	# MI vs CSK
 	OUR_PLAYERS = "Ishan Kishan †, E Lewis, DL Chahar, AT Rayudu, KM Jadhav, MS Dhoni (c) †, DJ Bravo, Harbhajan Singh, Imran Tahir, KA Pollard, MJ McClenaghan"
 	OPPOSING_PLAYERS = "SR Watson, RG Sharma (c), SA Yadav, SK Raina, RA Jadeja, MA Wood, M Markande, Mustafizur Rahman, HH Pandya, KH Pandya, JJ Bumrah"
+	OUR_TEAM = OUR_PLAYERS.split(', ')
+	OPPOSING_TEAM = OPPOSING_PLAYERS.split(', ')
+
 	OUR_CAPTAIN = "DJ Bravo"
 	OPPONENT_CAPTAIN = "RG Sharma (c)"
 	MATCH_URL = "http://www.espncricinfo.com/series/8048/scorecard/1136561/mumbai-indians-vs-chennai-super-kings-1st-match-indian-premier-league-2018"
 
-	OUR_TEAM = OUR_PLAYERS.split(', ')
-	OPPOSING_TEAM = OPPOSING_PLAYERS.split(', ')
+	attr_accessor :batting_records, :our_team_batting_total, :our_team_bowling_total, :our_team_fielding_total, 
+	:opposing_team_batting_total, :opposing_team_bowling_total, :opposing_team_fielding_total, 
+	:player_batting_score, :player_bowling_score, :player_fielding_score, :our_team_total, :opposing_team_total
 
-	attr_accessor :our_team_batting_total, :opposing_team_batting_total, :our_team_fielding_total, 
-	:opposing_team_fielding_total, :player_batting_score, :player_bowling_score, :player_fielding_score
+	def initialize(batting_card)
+		@batting_records = batting_card.css(".flex-row").css(".wrap.batsmen")
 
-	def initialize
 		@our_team_batting_total = 0
 		@opposing_team_batting_total = 0
 		@our_team_bowling_total = 0
+		@our_team_total = 0
+
 		@opposing_team_bowling_total = 0
 		@our_team_fielding_total = 0
 		@opposing_team_fielding_total = 0
+		@opposing_team_total = 0
+
 		@player_batting_score = Hash.new(0)
 		@player_bowling_score = Hash.new(0)
 		@player_fielding_score = Hash.new(0)
 	end
 
-	def read_table_rows(trs)
-	 	dismissal_infos = get_dismissal_infos(trs)
+	def aggregate
+		dismissal_infos = get_dismissal_infos
 
 		dismissal_infos.each do |dismissal|
 			if ((dismissal.include? 'st ') || (dismissal.include? 'c '))
@@ -52,9 +58,12 @@ class FantasyInnings
 		puts "Opposing Team Bowling Score : " + @opposing_team_bowling_total.to_s
 		puts "Our Team Fielding Score : " + @our_team_fielding_total.to_s
 		puts "Opposing Team Fielding Score : " + @opposing_team_fielding_total.to_s
-
-		return (@our_team_batting_total + @our_team_bowling_total + @our_team_fielding_total), (@opposing_team_batting_total + @opposing_team_bowling_total + @opposing_team_fielding_total)
+		@our_team_total = @our_team_batting_total + @our_team_bowling_total + @our_team_fielding_total
+		@opposing_team_total = @opposing_team_batting_total + @opposing_team_bowling_total + @opposing_team_fielding_total
+		return @our_team_total - @opposing_team_total
 	end
+
+	private 
 
 	def add_bonus_points(players, our_team = true)
 		players.each do |player_name|
@@ -109,40 +118,34 @@ class FantasyInnings
 		@player_batting_score[player_name] += points		
 	end	
 
-	def get_dismissal_infos(trs)
+	def get_dismissal_infos
 		dismissal_infos = []
-		trs.each_with_index do |tr, index|
-			if index == (trs.size - 3)
-				break;
-			end	
+		
+		@batting_records.each do |batting_record|
+			batsman_name = batting_record.css(".cell.batsmen").css("a").text
+			runs = batting_record.css(".cell.runs")[0].text.to_i
 
-			batsman_name = tr.css(".wrap").css(".batsmen").css(".cell").css(".batsmen").css("a").text
-			runs_div = tr.css(".wrap").css(".batsmen").css(".cell").css(".runs")[0]
-			if (batsman_name != nil && runs_div != nil) 
-				runs = runs_div.text.to_i
-
-				if (OUR_TEAM.include? batsman_name) 			
-					if (OUR_CAPTAIN.include? batsman_name)
-						@our_team_batting_total += 2*runs
-						@player_batting_score[batsman_name] = 2*runs
-					else	
-						@our_team_batting_total += runs
-						@player_batting_score[batsman_name] = runs
-					end
-				elsif (OPPOSING_TEAM.include? batsman_name)
-					if (OPPONENT_CAPTAIN.include? batsman_name)
-						@opposing_team_batting_total += 2*runs
-						@player_batting_score[batsman_name] = 2*runs
-					else	
-						@opposing_team_batting_total += runs
-						@player_batting_score[batsman_name] = runs
-					end
+			if (OUR_TEAM.include? batsman_name) 			
+				if (OUR_CAPTAIN.include? batsman_name)
+					@our_team_batting_total += 2*runs
+					@player_batting_score[batsman_name] = 2*runs
+				else	
+					@our_team_batting_total += runs
+					@player_batting_score[batsman_name] = runs
 				end
+			elsif (OPPOSING_TEAM.include? batsman_name)
+				if (OPPONENT_CAPTAIN.include? batsman_name)
+					@opposing_team_batting_total += 2*runs
+					@player_batting_score[batsman_name] = 2*runs
+				else	
+					@opposing_team_batting_total += runs
+					@player_batting_score[batsman_name] = runs
+				end
+			end
 
-				dismissal = tr.css(".commentary").css("a").text
-				dismissal.strip!
-				dismissal_infos << dismissal
-			end	
+			dismissal = batting_record.css(".cell.commentary").css("a").text
+			dismissal.strip!
+			dismissal_infos << dismissal
 		end
 
 		puts "Our team batting score: " + @our_team_batting_total.to_s
@@ -214,7 +217,7 @@ class FantasyInnings
 		update_score_for_fielder(fielder_name)
 	end
 
-	def update_score_for_fielder(fielder_name, split=false)
+	def update_score_for_fielder(fielder_name, split = false)
 		opposing_team_fielder_name = OPPOSING_TEAM.find {|s| s.include? fielder_name}
 		fielding_points = split ? 2.5 : 5
 		if (opposing_team_fielder_name != nil)
@@ -240,27 +243,30 @@ class FantasyInnings
 	end
 end
 
+# class Team
+# 	attr_accessor :players
+# 	def initialize(team)
+# 		@
+# 	end	
+
+# 	def total
+
+# 	end	
+# end	
 puts "OUR TEAM : ".bold + FantasyInnings::OUR_PLAYERS
 puts "OPPOSING TEAM : ".bold + FantasyInnings::OPPOSING_PLAYERS
 
 puts "*"*100
 
 page = Nokogiri::HTML(open(FantasyInnings::MATCH_URL).read)
-batting_tables = page.css(".scorecard-section")
-puts "FIRST INNINGS: ".cyan.bold
-first_innings = FantasyInnings.new
 
-first_innings_records = batting_tables[0].css(".flex-row")
-first_innings_our_score, first_innings_opponent_score = first_innings.read_table_rows(first_innings_records)
-puts "First Innings Aggregate : ".bold + (first_innings_our_score - first_innings_opponent_score).to_s
-# puts "*"*100
+puts "FIRST INNINGS: ".cyan.bold
+first_innings = FantasyInnings.new(page.css(".scorecard-section")[0])
+puts "First Innings Aggregate : ".bold + first_innings.aggregate.to_s
 
 puts "SECOND INNINGS: ".cyan.bold
-second_innings = FantasyInnings.new
-
-second_innings_records = batting_tables[2].css(".flex-row")
-second_innings_our_score, second_innings_opponent_score = second_innings.read_table_rows(second_innings_records)
-puts "Second Innings Aggregate : ".bold + (second_innings_our_score - second_innings_opponent_score).to_s
+second_innings = FantasyInnings.new(page.css(".scorecard-section")[2])
+puts "Second Innings Aggregate : ".bold + second_innings.aggregate.to_s
 
 puts "*"*100
 
@@ -281,8 +287,8 @@ FantasyInnings::OUR_TEAM.each do |player|
 	printf "%-20s %-20s %-20s %-20s %-20s\n", player_name, player_final_batting_score[player].to_s, player_final_bowling_score[player].to_s, player_final_fielding_score[player].to_s, player_final_score[player].to_s
 end
 
-our_team_total = first_innings_our_score + second_innings_our_score
-puts "Our Team Total : #{our_team_total}".blue.bold
+our_team_game_total = first_innings.our_team_total + second_innings.our_team_total
+puts "Our Team Total : #{our_team_game_total}".blue.bold
 
 puts "*"*100
 
@@ -304,35 +310,36 @@ FantasyInnings::OPPOSING_TEAM.each do |player|
 	printf "%-20s %-20s %-20s %-20s %-20s\n", player_name, opposing_player_final_batting_score[player].to_s, opposing_player_final_bowling_score[player].to_s, opposing_player_final_fielding_score[player].to_s, opposing_player_final_score[player].to_s
 end	
 
-opposing_team_total = first_innings_opponent_score + second_innings_opponent_score
-puts "Opposing Team Total : #{opposing_team_total}".blue.bold
+opposing_team_game_total = first_innings.opposing_team_total + second_innings.opposing_team_total
+puts "Opposing Team Total : #{opposing_team_game_total}".blue.bold
 
-puts "*"*100
+puts "*"*100	
 
-final_total = (first_innings_our_score + second_innings_our_score) - (first_innings_opponent_score + second_innings_opponent_score)
-puts "MATCH AGGREGATE : ".bold + ((final_total < 0) ? final_total.to_s.red : final_total.to_s.green)
+final_game_total = our_team_game_total - opposing_team_game_total
+puts "MATCH AGGREGATE : ".bold + ((final_game_total < 0) ? final_game_total.to_s.red : final_game_total.to_s.green)
 
-man_of_the_match = page.css(".match-detail-container").css(".match-detail--item")[2].css(".match-detail--right").text
-puts 'MAN OF THE MATCH: '.bold + man_of_the_match.to_s
-
-# if (FantasyInnings::OUR_TEAM.include? man_of_the_match) 			
-# 	if (FantasyInnings::OUR_CAPTAIN.include? man_of_the_match)
-# 		first_innings.our_team_batting_total += 2*30
-# 		first_innings.player_batting_score[man_of_the_match] = 2*30
-# 	else	
-# 		first_innings.our_team_batting_total += 30
-# 		first_innings.player_batting_score[man_of_the_match] = 30
-# 	end
-# elsif (FantasyInnings::OPPOSING_TEAM.include? man_of_the_match)
-# 	if (FantasyInnings::OPPONENT_CAPTAIN.include? man_of_the_match)
-# 		first_innings.opposing_team_batting_total += 2*runs
-# 		first_innings.player_batting_score[man_of_the_match] = 2*runs
-# 	else	
-# 		first_innings.opposing_team_batting_total += runs
-# 		first_innings.player_batting_score[man_of_the_match] = runs
-# 	end
-# end
-
+mom_div = page.css(".match-detail-container").css(".match-detail--item")[2].css(".match-detail--right")
+if (mom_div != nil)
+	man_of_the_match = mom_div.text
+	puts 'MAN OF THE MATCH: '.bold + man_of_the_match.to_s
+	# if (FantasyInnings::OUR_TEAM.include? man_of_the_match) 			
+	# 	if (FantasyInnings::OUR_CAPTAIN.include? man_of_the_match)
+	# 		first_innings.our_team_batting_total += 2*30
+	# 		first_innings.player_batting_score[man_of_the_match] = 2*30
+	# 	else	
+	# 		first_innings.our_team_batting_total += 30
+	# 		first_innings.player_batting_score[man_of_the_match] = 30
+	# 	end
+	# elsif (FantasyInnings::OPPOSING_TEAM.include? man_of_the_match)
+	# 	if (FantasyInnings::OPPONENT_CAPTAIN.include? man_of_the_match)
+	# 		first_innings.opposing_team_batting_total += 2*runs
+	# 		first_innings.player_batting_score[man_of_the_match] = 2*runs
+	# 	else	
+	# 		first_innings.opposing_team_batting_total += runs
+	# 		first_innings.player_batting_score[man_of_the_match] = runs
+	# 	end
+	# end
+end
 # man_of_the_match = man_of_the_match_details.split(" (")[0]
 # puts "Man of the Match : ".bold + man_of_the_match
 
