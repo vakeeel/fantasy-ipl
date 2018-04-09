@@ -33,7 +33,7 @@ if options[:team] == nil
 end
 
 if options[:match] == nil
-    options[:match] = 'kkr_rcb'
+    options[:match] = 'srh_rr'
 end
 
 class FantasyInnings
@@ -43,8 +43,13 @@ class FantasyInnings
 	:our_team, :opposing_team, :fielding_team
 
 	def initialize(batting_card, bowling_card, our_team, opposing_team, fielding_team)
-		@batting_records = batting_card.css(".flex-row").css(".wrap.batsmen")
-		@bowling_records = bowling_card.css("tbody").css("tr")
+		if (batting_card != nil && batting_card.css(".flex-row") != nil)
+			@batting_records = batting_card.css(".flex-row").css(".wrap.batsmen")
+			@bowling_records = bowling_card.css("tbody").css("tr")
+		else
+			@batting_records = []
+			@bowling_records = []		
+		end	
 
 		@our_team = get_team(our_team)
 		@opposing_team = get_team(opposing_team)
@@ -372,13 +377,13 @@ if (man_of_the_match != nil)
 			opposing_team_game_total += 30
 		end
 	end
+	puts "Man Of The Match: ".bold + man_of_the_match 
 end
 
 puts "*"*100	
 
 final_game_total = our_team_game_total - opposing_team_game_total
-puts "Man Of The Match: ".bold + man_of_the_match
-puts "MATCH AGGREGATE(with mom points) : ".bold + ((final_game_total < 0) ? final_game_total.to_s.red : final_game_total.to_s.green)
+puts "MATCH AGGREGATE: ".bold + ((final_game_total < 0) ? final_game_total.to_s.red : final_game_total.to_s.green)
 
 # man_of_the_match = man_of_the_match_details.split(" (")[0]
 # puts "Man of the Match : ".bold + man_of_the_match
