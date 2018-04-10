@@ -1,0 +1,21 @@
+
+game:  
+  csk: "SW Billings, DJ Bravo, DL Chahar, MS Dhoni (c) †, SN Thakur, Harbhajan Singh, Imran Tahir, RA Jadeja, SK Raina, AT Rayudu, SR Watson"
+  kkr: "KD Karthik (c) †, PP Chawla, TK Curran, Kuldeep Yadav, CA Lynn, SP Narine, N Rana, AD Russell, RK Singh, RV Uthappa, R Vinay Kumar"
+  first_innings_fileding_team: "csk"
+  second_innings_fileding_team: "kkr"
+  match_url: "http://www.espncricinfo.com/series/8048/scorecard/1136565/chennai-super-kings-vs-kolkata-knight-riders-5th-match-indian-premier-league-2018"
+vv:
+  our_team: 
+    players: "SP Narine, AD Russell, SK Raina, AT Rayudu, SN Thakur, KD Karthik (c) †, Imran Tahir, PP Chawla, DL Chahar, RK Singh, R Vinay Kumar"
+    power_player: "AD Russell"
+  opposing_team:
+    players:  "DJ Bravo, SR Watson, CA Lynn, RA Jadeja, SW Billings, N Rana, RV Uthappa, TK Curran, Kuldeep Yadav, MS Dhoni (c) †, Harbhajan Singh"
+    power_player: "DJ Bravo"
+sai:
+  our_team: 
+    players: "DJ Bravo, AD Russell, SK Raina, AT Rayudu, SN Thakur, RV Uthappa, KD Karthik (c) †, PP Chawla, DL Chahar, MS Dhoni (c) †, RK Singh"
+    power_player: "AD Russell"
+  opposing_team:
+    players:  "SP Narine, SR Watson, CA Lynn, SW Billings, N Rana, Imran Tahir, TK Curran, RA Jadeja, R Vinay Kumar, Kuldeep Yadav, Harbhajan Singh"
+    power_player: "SP Narine"

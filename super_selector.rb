@@ -33,7 +33,7 @@ if options[:team] == nil
 end
 
 if options[:match] == nil
-    options[:match] = 'srh_rr'
+    options[:match] = 'csk_kkr'
 end
 
 class FantasyInnings
@@ -258,28 +258,30 @@ class FantasyInnings
 	def update_score_for_fielder(fielder_name, split = false)
 		fielder_name = @fielding_team.find { |fielder| fielder.include? fielder_name.to_s }
 
-		opposing_team_fielder_name = @opposing_team[:players].find {|s| s.include? fielder_name}
-		fielding_points = split ? 2.5 : 5
-		if (opposing_team_fielder_name != nil)
-			if (@opposing_team[:power_player].include? opposing_team_fielder_name)
-				@opposing_team_fielding_total += 2*fielding_points
-				@player_fielding_score[opposing_team_fielder_name] += 2*fielding_points
-			else
-				@opposing_team_fielding_total += fielding_points
-				@player_fielding_score[opposing_team_fielder_name] += fielding_points
-			end
-		else
-			our_team_fielder_name = @our_team[:players].find {|s| s.include? fielder_name}
-			if (our_team_fielder_name != nil)			
-				if (@our_team[:power_player].include? our_team_fielder_name)
-					@our_team_fielding_total += 2*fielding_points
-					@player_fielding_score[our_team_fielder_name] += 2*fielding_points
+		if (fielder_name != nil)
+			opposing_team_fielder_name = @opposing_team[:players].find {|s| s.include? fielder_name } 
+			fielding_points = split ? 2.5 : 5
+			if (opposing_team_fielder_name != nil)
+				if (@opposing_team[:power_player].include? opposing_team_fielder_name)
+					@opposing_team_fielding_total += 2*fielding_points
+					@player_fielding_score[opposing_team_fielder_name] += 2*fielding_points
 				else
-					@our_team_fielding_total += fielding_points
-					@player_fielding_score[our_team_fielder_name] += fielding_points
+					@opposing_team_fielding_total += fielding_points
+					@player_fielding_score[opposing_team_fielder_name] += fielding_points
+				end
+			else
+				our_team_fielder_name = @our_team[:players].find {|s| s.include? fielder_name}
+				if (our_team_fielder_name != nil)			
+					if (@our_team[:power_player].include? our_team_fielder_name)
+						@our_team_fielding_total += 2*fielding_points
+						@player_fielding_score[our_team_fielder_name] += 2*fielding_points
+					else
+						@our_team_fielding_total += fielding_points
+						@player_fielding_score[our_team_fielder_name] += fielding_points
+					end
 				end
 			end
-		end
+		end	
 	end
 end
 

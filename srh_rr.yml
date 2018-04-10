@@ -1,21 +1,22 @@
 
 game:  
-  rr: "AM Rahane (c), DJM Short, SV Samson †, BA Stokes, RA Tripathi, JC Buttler, K Gowtham, S Gopal, DS Kulkarni, JD Unadkat, B Laughlin"
+  rr: "AM Rahane (c), DJM Short, SV Samson, BA Stokes, RA Tripathi, JC Buttler †, K Gowtham, S Gopal, DS Kulkarni, JD Unadkat, B Laughlin"
   srh: "KS Williamson (c), S Dhawan, MK Pandey, DJ Hooda, YK Pathan, Shakib Al Hasan, WP Saha †, Rashid Khan, B Kumar, B Stanlake, S Kaul"
   first_innings_fileding_team: "srh"
   second_innings_fileding_team: "rr"
   match_url: "http://www.espncricinfo.com/series/8048/scorecard/1136564/sunrisers-hyderabad-vs-rajasthan-royals-4th-match-indian-premier-league-2018"
+  mom: "S Dhawan"
 vv:
   our_team: 
-    players: "B Kumar, B Stanlake, JD Unadkat, KS Williamson (c), AM Rahane (c), JC Buttler, RA Tripathi, K Gowtham, MK Pandey, DJ Hooda, S Gopal"
+    players: "B Kumar, B Stanlake, JD Unadkat, KS Williamson (c), AM Rahane (c), JC Buttler †, RA Tripathi, K Gowtham, MK Pandey, DJ Hooda, S Gopal"
     power_player: "B Kumar"
   opposing_team:
-    players:  "BA Stokes, Rashid Khan, S Dhawan, SV Samson †, Shakib Al Hasan, WP Saha †, DS Kulkarni, DJM Short, YK Pathan, S Kaul, B Laughlin"
+    players:  "BA Stokes, Rashid Khan, S Dhawan, SV Samson, Shakib Al Hasan, WP Saha †, DS Kulkarni, DJM Short, YK Pathan, S Kaul, B Laughlin"
     power_player: "BA Stokes"
 sai:
   our_team: 
-    players: "B Kumar, B Stanlake, JD Unadkat, KS Williamson (c), JC Buttler, RA Tripathi, K Gowtham, Shakib Al Hasan, WP Saha †, YK Pathan, B Laughlin"
+    players: "B Kumar, B Stanlake, JD Unadkat, KS Williamson (c), JC Buttler †, RA Tripathi, K Gowtham, Shakib Al Hasan, WP Saha †, YK Pathan, B Laughlin"
     power_player: "B Kumar"
   opposing_team:
-    players:  "BA Stokes, Rashid Khan, S Dhawan, AM Rahane (c), SV Samson †, MK Pandey, DS Kulkarni, DJM Short, DJ Hooda, S Gopal, S Kaul"
+    players:  "BA Stokes, Rashid Khan, S Dhawan, AM Rahane (c), SV Samson, MK Pandey, DS Kulkarni, DJM Short, DJ Hooda, S Gopal, S Kaul"
     power_player: "BA Stokes"
