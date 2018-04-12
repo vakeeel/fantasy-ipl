@@ -5,6 +5,7 @@ game:
   first_innings_fileding_team: "csk"
   second_innings_fileding_team: "kkr"
   match_url: "http://www.espncricinfo.com/series/8048/scorecard/1136565/chennai-super-kings-vs-kolkata-knight-riders-5th-match-indian-premier-league-2018"
+  mom: "SW Billings"
 vv:
   our_team: 
     players: "SP Narine, AD Russell, SK Raina, AT Rayudu, SN Thakur, KD Karthik (c) †, Imran Tahir, PP Chawla, DL Chahar, RK Singh, R Vinay Kumar"

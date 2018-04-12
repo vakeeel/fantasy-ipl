@@ -1,0 +1,31 @@
+---
+game:
+  rr: AM Rahane (c), DJM Short, SV Samson, BA Stokes, RA Tripathi, JC Buttler †, K
+    Gowtham, S Gopal, DS Kulkarni, JD Unadkat, B Laughlin
+  dd: C Munro, G Gambhir (c), SS Iyer, V Shankar, RR Pant †, R Tewatia, CH Morris,
+    GJ Maxwell, S Nadeem, TA Boult, Mohammed Shami
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    sai_range: DD vs RR - Match 6!A3:B13
+    vv_range: DD vs RR - Match 6!F3:G13
+  first_innings_fielding_team: dd
+  second_innings_fielding_team: rr
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136566/rajasthan-royals-vs-delhi-daredevils-6th-match-indian-premier-league-2018
+vv:
+  our_team:
+    players: BA Stokes, CH Morris, TA Boult, C Munro, SS Iyer, JC Buttler †, RR Pant
+      †, K Gowtham, Mohammed Shami, DS Kulkarni, S Gopal
+    power_player: BA Stokes
+  opposing_team:
+    players: GJ Maxwell, JD Unadkat, DJM Short, AM Rahane (c), SV Samson, B Laughlin,
+      G Gambhir (c), S Nadeem, R Tewatia, V Shankar, RA Tripathi
+    power_player: GJ Maxwell
+sai:
+  our_team:
+    players: BA Stokes, TA Boult, C Munro, JD Unadkat, AM Rahane (c), SS Iyer, JC
+      Buttler †, Mohammed Shami, RR Pant †, K Gowtham, R Tewatia
+    power_player: BA Stokes
+  opposing_team:
+    players: CH Morris, G Gambhir (c), DJM Short, SV Samson, GJ Maxwell, B Laughlin,
+      S Nadeem, DS Kulkarni, S Gopal, V Shankar, RA Tripathi
+    power_player: CH Morris

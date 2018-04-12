@@ -7,6 +7,8 @@ require 'active_support/core_ext'
 require 'yaml'
 require 'optparse'
 require 'active_record'
+require 'highline/import'
+require 'pp'
 
 options = {:team => nil, :match => nil}
 
@@ -33,7 +35,7 @@ if options[:team] == nil
 end
 
 if options[:match] == nil
-    options[:match] = 'csk_kkr'
+    options[:match] = 'rr_dd'
 end
 
 class FantasyInnings
@@ -286,7 +288,6 @@ class FantasyInnings
 end
 
 game_config = YAML.load(ERB.new(File.read("#{options[:match]}.yml")).result).deep_symbolize_keys
-
 our_team = game_config[options[:team]][:our_team]
 opposing_team = game_config[options[:team]][:opposing_team]
 
@@ -298,8 +299,8 @@ puts "*"*100
 page = Nokogiri::HTML(open(game_config[:game][:match_url]).read)
 
 puts "FIRST INNINGS: ".cyan.bold
-first_innings_fileding_team = game_config[:game][game_config[:game][:first_innings_fileding_team].to_sym]
-first_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[0], page.css(".scorecard-section.bowling")[0], our_team, opposing_team, first_innings_fileding_team)
+first_innings_fielding_team = game_config[:game][game_config[:game][:first_innings_fielding_team].to_sym]
+first_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[0], page.css(".scorecard-section.bowling")[0], our_team, opposing_team, first_innings_fielding_team)
 fi_aggregate = first_innings.aggregate.to_s
 
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
@@ -310,8 +311,8 @@ puts "First Innings Aggregate : #{fi_aggregate}".blue.bold
 puts "*"*100
 
 puts "SECOND INNINGS: ".cyan.bold
-second_innings_fileding_team = game_config[:game][game_config[:game][:second_innings_fileding_team].to_sym]
-second_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[1], page.css(".scorecard-section.bowling")[1], our_team, opposing_team, second_innings_fileding_team)
+second_innings_fielding_team = game_config[:game][game_config[:game][:second_innings_fielding_team].to_sym]
+second_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[1], page.css(".scorecard-section.bowling")[1], our_team, opposing_team, second_innings_fielding_team)
 si_aggregate = second_innings.aggregate.to_s
 
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
