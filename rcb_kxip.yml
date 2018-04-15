@@ -1,0 +1,27 @@
+---
+game:
+  rcb: V Kohli (c), BB McCullum, AB de Villiers, Q de Kock †, SN Khan, Mandeep Singh,
+    CR Woakes, UT Yadav, YS Chahal, Washington Sundar, K Khejroliya
+  kxip: KL Rahul †, MA Agarwal, AJ Finch, Yuvraj Singh, KK Nair, MP Stoinis, AR Patel,
+    R Ashwin (c), AJ Tye, MM Sharma, Mujeeb Ur Rahman
+  first_innings_fielding_team: rcb
+  second_innings_fielding_team: kxip
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136568/royal-challengers-bangalore-vs-kings-xi-punjab-8th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    sai_range: RCB vs KXI - Match 8!A3:B13
+    vv_range: RCB vs KXI - Match 8!F3:G13
+sai:
+  our_team:
+    players: "V Kohli (c), AB de Villiers, CR Woakes, AJ Finch, MM Sharma, AR Patel, YS Chahal, AJ Tye, MA Agarwal, MP Stoinis, Mandeep Singh"
+    power_player: "V Kohli (c)"
+  opposing_team:
+    players: "BB McCullum, KL Rahul †, UT Yadav, KK Nair, Q de Kock †, Mujeeb Ur Rahman, Washington Sundar, R Ashwin (c), K Khejroliya, Yuvraj Singh, SN Khan"
+    power_player: "KL Rahul †"
+vinay:
+  our_team:
+    players: "V Kohli (c), CR Woakes, AJ Finch, UT Yadav, MM Sharma, YS Chahal, BB McCullum, AR Patel, MA Agarwal, Mujeeb Ur Rahman, Mandeep Singh"
+    power_player: "V Kohli (c)"
+  opposing_team:
+    players: "MP Stoinis, AB de Villiers, KL Rahul †, AJ Tye, Washington Sundar, Q de Kock †, Yuvraj Singh, R Ashwin (c), KK Nair, K Khejroliya, SN Khan"
+    power_player: "KL Rahul †"

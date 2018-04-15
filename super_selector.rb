@@ -35,7 +35,7 @@ if options[:team] == nil
 end
 
 if options[:match] == nil
-    options[:match] = 'srh_mi'
+    options[:match] = 'rcb_rr'
 end
 
 class FantasyInnings

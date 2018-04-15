@@ -1,0 +1,41 @@
+---
+game:
+  kkr: SP Narine, AD Russell, KD Karthik (c) †, RV Uthappa, CA Lynn, Shubman Gill,
+    N Rana, Shivam Mavi, Kuldeep Yadav, PP Chawla, MG Johnson
+  srh: KS Williamson (c), S Dhawan, MK Pandey, DJ Hooda, YK Pathan, Shakib Al Hasan,
+    WP Saha †, Rashid Khan, B Kumar, B Stanlake, S Kaul
+  first_innings_fielding_team: srh
+  second_innings_fielding_team: kkr
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136570/kolkata-knight-riders-vs-sunrisers-hyderabad-10th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    uday_range: KKR vs SRH - Match 10!A4:B14
+    sai_range: KKR vs SRH - Match 10!D4:E14
+    vineeth_range: KKR vs SRH - Match 10!G4:H14
+vineeth:
+  our_team:
+    players: B Kumar, AD Russell, S Kaul, S Dhawan, CA Lynn, MK Pandey, MG Johnson, PP Chawla,
+      KD Karthik (c) †, Shivam Mavi, YK Pathan
+    power_player: AD Russell
+  opposing_team:
+    players: SP Narine, Rashid Khan, Shakib Al Hasan, KS Williamson (c), B Stanlake,
+      RV Uthappa, Kuldeep Yadav, WP Saha †, N Rana, DJ Hooda, Shubman Gill
+    power_player: SP Narine
+sai:
+  our_team:
+    players: B Kumar, AD Russell, S Kaul, Shakib Al Hasan, CA Lynn, RV Uthappa, MK Pandey, PP
+      Chawla, MG Johnson, KD Karthik (c) †, DJ Hooda
+    power_player: S Kaul
+  opposing_team:
+    players: SP Narine, Rashid Khan, S Dhawan, N Rana, B Stanlake, KS Williamson (c),
+      WP Saha †, Kuldeep Yadav, Shivam Mavi, YK Pathan, Shubman Gill
+    power_player: SP Narine
+uday:
+  our_team:
+    players: B Kumar, AD Russell, S Kaul, S Dhawan, RV Uthappa, MK Pandey, PP Chawla, MG Johnson,
+      N Rana, Shubman Gill, DJ Hooda
+    power_player: AD Russell
+  opposing_team:
+    players: SP Narine, Rashid Khan, CA Lynn, Shakib Al Hasan, KS Williamson (c),
+      B Stanlake, Kuldeep Yadav, Shivam Mavi, KD Karthik (c) †, WP Saha †, YK Pathan
+    power_player: SP Narine

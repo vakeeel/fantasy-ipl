@@ -1,0 +1,41 @@
+---
+game:
+  rcb: V Kohli (c), BB McCullum, AB de Villiers, Q de Kock †, P Negi, Mandeep Singh,
+    CR Woakes, UT Yadav, YS Chahal, Washington Sundar, K Khejroliya
+  rr: AM Rahane (c), DJM Short, SV Samson, BA Stokes, RA Tripathi, JC Buttler †, K
+    Gowtham, S Gopal, DS Kulkarni, JD Unadkat, B Laughlin
+  first_innings_fielding_team: rcb
+  second_innings_fielding_team: rr
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136571/royal-challengers-bangalore-vs-rajasthan-royals-11th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    uday_range: RCB vs RR - MATCH 11!A4:B14
+    sai_range: RCB vs RR - MATCH 11!D4:E14
+    vineeth_range: RCB vs RR - MATCH 11!G4:H14
+vineeth:
+  our_team:
+    players: BA Stokes, AB de Villiers, DJM Short, Q de Kock †, JC Buttler †, Washington
+      Sundar, K Khejroliya, B Laughlin, K Gowtham, P Negi, Mandeep Singh
+    power_player: BA Stokes
+  opposing_team:
+    players: V Kohli (c), UT Yadav, CR Woakes, AM Rahane (c), BB McCullum, SV Samson, YS Chahal, JD Unadkat, DS
+      Kulkarni, S Gopal, RA Tripathi
+    power_player: UT Yadav
+sai:
+  our_team:
+    players: V Kohli (c), DJM Short, Q de Kock †, AM Rahane (c), CR Woakes, YS Chahal, JD Unadkat,
+      S Gopal, K Khejroliya, JC Buttler †, Mandeep Singh
+    power_player: S Kaul
+  opposing_team:
+    players: BA Stokes, AB de Villiers, BB McCullum, SV Samson, UT Yadav, Washington Sundar, B Laughlin, P Negi,
+      DS Kulkarni, RA Tripathi, K Gowtham
+    power_player: SP Narine
+uday:
+  our_team:
+    players: BA Stokes, V Kohli (c), DJM Short, CR Woakes, B Laughlin, Washington
+      Sundar, Q de Kock †, JC Buttler †, DS Kulkarni, K Khejroliya, K Gowtham
+    power_player: BA Stokes
+  opposing_team:
+    players: "BB McCullum, SV Samson, AB de Villiers, UT Yadav, JD Unadkat, YS Chahal, AM Rahane (c), Mandeep Singh,
+      RA Tripathi, P Negi, S Gopal"
+    power_player: SP Narine
