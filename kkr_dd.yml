@@ -1,0 +1,25 @@
+---
+game:
+  kkr: SP Narine, AD Russell, KD Karthik (c) †, RV Uthappa, CA Lynn, Shubman Gill, N Rana, Shivam Mavi, Kuldeep Yadav, PP Chawla, TK Curran
+  dd: JJ Roy, G Gambhir (c), SS Iyer, V Shankar, RR Pant †, R Tewatia, CH Morris, GJ Maxwell, S Nadeem, TA Boult, Mohammed Shami
+  first_innings_fielding_team: dd
+  second_innings_fielding_team: kkr
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136573/kolkata-knight-riders-vs-delhi-daredevils-13th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    sai_range: KKR vs DD - MATCH 13!D4:E14
+    vineeth_range: KKR vs DD - MATCH 13!A4:B14
+vineeth:
+  our_team:
+    players: CH Morris, AD Russell, GJ Maxwell, CA Lynn, TK Curran, Kuldeep Yadav, Mohammed Shami, RV Uthappa, RR Pant †, Shivam Mavi, V Shankar
+    power_player: CH Morris
+  opposing_team:
+    players: SP Narine, TA Boult, G Gambhir (c), JJ Roy, S Nadeem, PP Chawla, R Tewatia, N Rana, KD Karthik (c) †, SS Iyer, Shubman Gill
+    power_player: G Gambhir (c)
+sai:
+  our_team:
+    players: CH Morris, GJ Maxwell, G Gambhir (c), RV Uthappa, TK Curran, Mohammed Shami, Kuldeep Yadav, N Rana, RR Pant †, Shivam Mavi, V Shankar
+    power_player: CH Morris
+  opposing_team:
+    players: SP Narine, AD Russell, JJ Roy, CA Lynn, TA Boult, R Tewatia, S Nadeem, PP Chawla, KD Karthik (c) †, SS Iyer, Shubman Gill
+    power_player: SP Narine
