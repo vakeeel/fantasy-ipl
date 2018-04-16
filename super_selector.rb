@@ -192,9 +192,9 @@ class FantasyInnings
 	end	
 
 	def update_scores_for_catch_or_stumping(dismissal)
-		involved_players = dismissal.split(' b ')
+		involved_players = dismissal.split(' b ') 
 
-		fielder_name = involved_players[0]
+		fielder_name = dismissal.include?('&') ? involved_players[1] : involved_players[0]
 		fielder_name.gsub!(/†/, '')  # Doing this for keepers where you have † symbol.
 
 		if (fielder_name.include? '&') 
