@@ -31,7 +31,7 @@ end
 parser.parse!
 
 if options[:match] == nil
-    options[:match] = 'rcb_rr'
+    options[:match] = 'csk_kxip'
 end
 
 class Team
@@ -52,7 +52,7 @@ class Team
 
       @our_team << players.find { |player| player.downcase.include? row[0].downcase } 
       @opponent_team << players.find { |player| player.downcase.include? row[1].downcase } 
-    end
+    end if response.values.present?
   end  
 end  
 

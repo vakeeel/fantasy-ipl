@@ -1,0 +1,32 @@
+---
+game:
+  csk: SW Billings, DJ Bravo, DL Chahar, MS Dhoni (c) †, SN Thakur, Harbhajan Singh,
+    Imran Tahir, RA Jadeja, M Vijay, AT Rayudu, SR Watson
+  kxip: KL Rahul †, MA Agarwal, AJ Finch, Yuvraj Singh, KK Nair, CH Gayle, BB Sran,
+    R Ashwin (c), AJ Tye, MM Sharma, Mujeeb Ur Rahman
+  first_innings_fielding_team: csk
+  second_innings_fielding_team: kxip
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136572/kings-xi-punjab-vs-chennai-super-kings-12th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    uday_range: CSK vs KXI - MATCH 12!A4:B14
+    sai_range: CSK vs KXI - MATCH 12!D4:E14
+    vineeth_range: CSK vs KXI - MATCH 12!G4:H14
+vineeth:
+  our_team:
+    players: 'SR Watson, KL Rahul †, AJ Finch, AJ Tye, MA Agarwal, MS Dhoni (c) †, BB Sran,
+      SW Billings, R Ashwin (c), DL Chahar, Harbhajan Singh'
+    power_player: SR Watson
+  opposing_team:
+    players: 'DJ Bravo, CH Gayle, Mujeeb Ur Rahman, Imran Tahir, KK Nair, MM Sharma, M Vijay, AT Rayudu,
+      SN Thakur, RA Jadeja, Yuvraj Singh'
+    power_player: CH Gayle
+uday:
+  our_team:
+    players: SR Watson, DJ Bravo, Mujeeb Ur Rahman, AJ Finch, AJ Tye, KK Nair, MA Agarwal, MS
+      Dhoni (c) †, Imran Tahir, BB Sran, M Vijay
+    power_player: SR Watson
+  opposing_team:
+    players: 'KL Rahul †, AT Rayudu, SW Billings, R Ashwin (c), SN Thakur, RA Jadeja, CH Gayle,
+      MM Sharma, Harbhajan Singh, DL Chahar, Yuvraj Singh'
+    power_player: R Ashwin (c)

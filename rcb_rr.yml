@@ -25,11 +25,11 @@ sai:
   our_team:
     players: V Kohli (c), DJM Short, Q de Kock †, AM Rahane (c), CR Woakes, YS Chahal, JD Unadkat,
       S Gopal, K Khejroliya, JC Buttler †, Mandeep Singh
-    power_player: S Kaul
+    power_player: DJM Short
   opposing_team:
     players: BA Stokes, AB de Villiers, BB McCullum, SV Samson, UT Yadav, Washington Sundar, B Laughlin, P Negi,
       DS Kulkarni, RA Tripathi, K Gowtham
-    power_player: SP Narine
+    power_player: BA Stokes
 uday:
   our_team:
     players: BA Stokes, V Kohli (c), DJM Short, CR Woakes, B Laughlin, Washington
@@ -38,4 +38,4 @@ uday:
   opposing_team:
     players: "BB McCullum, SV Samson, AB de Villiers, UT Yadav, JD Unadkat, YS Chahal, AM Rahane (c), Mandeep Singh,
       RA Tripathi, P Negi, S Gopal"
-    power_player: SP Narine
+    power_player: AB de Villiers
