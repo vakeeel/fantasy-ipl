@@ -10,7 +10,7 @@ require 'active_record'
 require 'highline/import'
 require 'pp'
 
-options = {:team => nil, :match => nil}
+options = {:team => nil, :match => nil, :bonus => 'true'}
 
 parser = OptionParser.new do|opts|
 	opts.banner = "Usage: super_selector.rb [options]"
@@ -20,6 +20,10 @@ parser = OptionParser.new do|opts|
 
 	opts.on('-m', '--match match', 'Match') do |match|
 		options[:match] = match;
+	end
+
+	opts.on('-b', '-bonus bonus', 'Bonus') do |bonus|
+		options[:bonus] = bonus;
 	end
 
 	opts.on('-h', '--help', 'Displays Help') do
@@ -72,7 +76,7 @@ class FantasyInnings
 		@player_fielding_score = Hash.new(0)
 	end
 
-	def aggregate
+	def aggregate(add_bonus = 'true')
 		dismissal_infos = get_dismissal_infos
 
 		dismissal_infos.each do |dismissal|
@@ -87,8 +91,13 @@ class FantasyInnings
 			end
 		end
 
-		add_bonus_points(@our_team)
-		add_bonus_points(@opposing_team, false)
+		puts 'Add bonus : ' + add_bonus.to_s
+		if add_bonus.eql? 'true'
+			puts 'Adding bonus'
+
+			add_bonus_points(@our_team)
+			add_bonus_points(@opposing_team, false)
+		end	
 
 		@our_team_total = @our_team_batting_total + @our_team_bowling_total + @our_team_fielding_total
 		@opposing_team_total = @opposing_team_batting_total + @opposing_team_bowling_total + @opposing_team_fielding_total
@@ -293,7 +302,7 @@ opposing_team = game_config[options[:team]][:opposing_team]
 
 puts "OUR TEAM : ".bold + our_team[:players]
 puts "OPPOSING TEAM : ".bold + opposing_team[:players]
-
+puts "BONUS POINTS : ".bold + options[:bonus]
 puts "*"*100
 
 page = Nokogiri::HTML(open(game_config[:game][:match_url]).read)
@@ -301,7 +310,7 @@ page = Nokogiri::HTML(open(game_config[:game][:match_url]).read)
 puts "FIRST INNINGS: ".cyan.bold
 first_innings_fielding_team = game_config[:game][game_config[:game][:first_innings_fielding_team].to_sym]
 first_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[0], page.css(".scorecard-section.bowling")[0], our_team, opposing_team, first_innings_fielding_team)
-fi_aggregate = first_innings.aggregate.to_s
+fi_aggregate = first_innings.aggregate(options[:bonus]).to_s
 
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Our Team", first_innings.our_team_batting_total.to_s, first_innings.our_team_bowling_total.to_s, first_innings.our_team_fielding_total.to_s, first_innings.our_team_total.to_s
@@ -313,7 +322,7 @@ puts "*"*100
 puts "SECOND INNINGS: ".cyan.bold
 second_innings_fielding_team = game_config[:game][game_config[:game][:second_innings_fielding_team].to_sym]
 second_innings = FantasyInnings.new(page.css(".scorecard-section.batsmen")[1], page.css(".scorecard-section.bowling")[1], our_team, opposing_team, second_innings_fielding_team)
-si_aggregate = second_innings.aggregate.to_s
+si_aggregate = second_innings.aggregate(options[:bonus]).to_s
 
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Team", "Batting Score", "Bowling Score", "Fielding Score", "Total Score"
 printf "%-20s %-20s %-20s %-20s %-20s\n", "Our Team", second_innings.our_team_batting_total.to_s, second_innings.our_team_bowling_total.to_s, second_innings.our_team_fielding_total.to_s, second_innings.our_team_total.to_s
