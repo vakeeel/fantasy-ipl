@@ -31,7 +31,7 @@ end
 parser.parse!
 
 if options[:match] == nil
-    options[:match] = 'kkr_dd'
+    options[:match] = 'rr_csk'
 end
 
 class Team
@@ -58,7 +58,7 @@ end
 
 class ReadTeam
 
-  attr_reader :spreadsheet_id, :range, :sai_team, :vineeth_team, :uday_team
+  attr_reader :spreadsheet_id, :range, :sai_team, :vineeth_team, :uday_team, :vinay_team
 
   OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'
   APPLICATION_NAME = 'Google Sheets API Ruby Quickstart'
@@ -72,9 +72,10 @@ class ReadTeam
     
     players = (config[config[:first_innings_fielding_team].to_sym] + ', ' + config[config[:second_innings_fielding_team].to_sym]).to_s.split(', ')
 
-    @sai_team = Team.new(teams(config[:google][:sai_range]), 'sai', players)
-    @vineeth_team = Team.new(teams(config[:google][:vineeth_range]), 'vineeth', players)
-    # @uday_team = Team.new(teams(config[:google][:uday_range]), 'uday', players)
+    # @vineeth_team = Team.new(teams(config[:google][:vineeth_range]), 'vineeth', players)
+    @vinay_team = Team.new(teams(config[:google][:vinay_range]), 'vinay', players)
+    # @sai_team = Team.new(teams(config[:google][:sai_range]), 'sai', players)
+    @uday_team = Team.new(teams(config[:google][:uday_range]), 'uday', players)
   end  
 
   private
@@ -118,14 +119,18 @@ end
 game_config = YAML.load(ERB.new(File.read("#{options[:match]}.yml")).result)
 read_team = ReadTeam.new(game_config.deep_symbolize_keys[:game])
 
-game_config['vineeth']['our_team']['players'] = "#{read_team.vineeth_team.our_team.join(', ')}"
-game_config['vineeth']['opposing_team']['players'] = "#{read_team.vineeth_team.opponent_team.join(', ')}"
-File.open("#{options[:match]}.yml", 'w') { |file| file.write game_config.to_yaml }
-
-game_config['sai']['our_team']['players'] = "#{read_team.sai_team.our_team.join(', ')}"
-game_config['sai']['opposing_team']['players'] = "#{read_team.sai_team.opponent_team.join(', ')}"
-File.open("#{options[:match]}.yml", 'w') { |file| file.write game_config.to_yaml }
-
-# game_config['uday']['our_team']['players'] = "#{read_team.uday_team.our_team.join(', ')}"
-# game_config['uday']['opposing_team']['players'] = "#{read_team.uday_team.opponent_team.join(', ')}"
+# game_config['vineeth']['our_team']['players'] = "#{read_team.vineeth_team.our_team.join(', ')}"
+# game_config['vineeth']['opposing_team']['players'] = "#{read_team.vineeth_team.opponent_team.join(', ')}"
 # File.open("#{options[:match]}.yml", 'w') { |file| file.write game_config.to_yaml }
+
+game_config['vinay']['our_team']['players'] = "#{read_team.vinay_team.our_team.join(', ')}"
+game_config['vinay']['opposing_team']['players'] = "#{read_team.vinay_team.opponent_team.join(', ')}"
+File.open("#{options[:match]}.yml", 'w') { |file| file.write game_config.to_yaml }
+
+# game_config['sai']['our_team']['players'] = "#{read_team.sai_team.our_team.join(', ')}"
+# game_config['sai']['opposing_team']['players'] = "#{read_team.sai_team.opponent_team.join(', ')}"
+# File.open("#{options[:match]}.yml", 'w') { |file| file.write game_config.to_yaml }
+
+game_config['uday']['our_team']['players'] = "#{read_team.uday_team.our_team.join(', ')}"
+game_config['uday']['opposing_team']['players'] = "#{read_team.uday_team.opponent_team.join(', ')}"
+File.open("#{options[:match]}.yml", 'w') { |file| file.write game_config.to_yaml }

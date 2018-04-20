@@ -1,0 +1,30 @@
+---
+game:
+  rr: AM Rahane (c), DJM Short, SV Samson, BA Stokes, RA Tripathi, JC Buttler †, K
+    Gowtham, S Gopal, DS Kulkarni, JD Unadkat, B Laughlin
+  kkr: SP Narine, AD Russell, KD Karthik (c) †, RV Uthappa, CA Lynn, Shubman Gill,
+    N Rana, Shivam Mavi, Kuldeep Yadav, PP Chawla, TK Curran
+  first_innings_fielding_team: kkr
+  second_innings_fielding_team: rr
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136575/rajasthan-royals-vs-kolkata-knight-riders-15th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    vinay_range: RR vs KKR - Match 15!A4:B14
+    vineeth_range: RR vs KKR - Match 15!D4:E14
+vineeth:
+  our_team:
+    players: BA Stokes, CA Lynn, TK Curran, DJM Short, PP Chawla, B Laughlin, JC Buttler †, S Gopal, KD Karthik (c) †, K Gowtham, Shubman Gill
+    power_player: BA Stokes
+  opposing_team:
+    players: SP Narine, AD Russell, N Rana, SV Samson, AM Rahane (c), Kuldeep Yadav,
+      JD Unadkat, RV Uthappa, Shivam Mavi, DS Kulkarni, RA Tripathi
+    power_player: SP Narine
+vinay:
+  our_team:
+    players: BA Stokes, CA Lynn, TK Curran, DJM Short, PP Chawla, B Laughlin, JC Buttler †,
+      S Gopal, KD Karthik (c) †, Shivam Mavi, Shubman Gill
+    power_player: BA Stokes
+  opposing_team:
+    players: SP Narine, AD Russell, SV Samson, AM Rahane (c), Kuldeep Yadav, N Rana,
+      DS Kulkarni, JD Unadkat, RV Uthappa, K Gowtham, RA Tripathi
+    power_player: SP Narine

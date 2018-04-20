@@ -1,0 +1,30 @@
+---
+game:
+  rr: AM Rahane (c), H Klaasen, SV Samson, BA Stokes, RA Tripathi, JC Buttler †, K
+    Gowtham, S Gopal, STR Binny, JD Unadkat, B Laughlin
+  csk: SW Billings, DJ Bravo, DL Chahar, MS Dhoni (c) †, SN Thakur, KV Sharma,
+    Imran Tahir, RA Jadeja, SK Raina, AT Rayudu, SR Watson
+  first_innings_fielding_team: rr
+  second_innings_fielding_team: csk
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136577/chennai-super-kings-vs-rajasthan-royals-17th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    vinay_range: RR vs CSK - Match 17!A4:B14
+    uday_range: RR vs CSK - Match 17!D4:E14
+uday:
+  our_team:
+    players: BA Stokes, DJ Bravo, SK Raina, SV Samson, SW Billings, B Laughlin, JD
+      Unadkat, SN Thakur, JC Buttler †, MS Dhoni (c) †, Imran Tahir
+    power_player: BA Stokes
+  opposing_team:
+    players: SR Watson, AM Rahane (c), AT Rayudu, H Klaasen, RA Tripathi, STR Binny, K
+      Gowtham, RA Jadeja, DL Chahar, S Gopal, KV Sharma
+    power_player: SR Watson
+vinay:
+  our_team:
+    players: BA Stokes, DJ Bravo, SK Raina, SW Billings, B Laughlin, JD Unadkat, SN Thakur,
+      JC Buttler †, MS Dhoni (c) †, K Gowtham, DS Kulkarni, KV Sharma
+    power_player: SK Raina
+  opposing_team:
+    players: SR Watson, Imran Tahir, SV Samson, AM Rahane (c), AT Rayudu, S Gopal, DL Chahar, H Klaasen, RA Tripathi, STR Binny, RA Jadeja
+    power_player: SR Watson

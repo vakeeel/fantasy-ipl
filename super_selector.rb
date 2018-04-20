@@ -91,10 +91,7 @@ class FantasyInnings
 			end
 		end
 
-		puts 'Add bonus : ' + add_bonus.to_s
 		if add_bonus.eql? 'true'
-			puts 'Adding bonus'
-
 			add_bonus_points(@our_team)
 			add_bonus_points(@opposing_team, false)
 		end	

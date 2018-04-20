@@ -1,0 +1,31 @@
+---
+game:
+  kxip: KL Rahul †, MA Agarwal, AJ Finch, Yuvraj Singh, KK Nair, CH Gayle, BB Sran,
+    R Ashwin (c), AJ Tye, MM Sharma, Mujeeb Ur Rahman
+  srh: KS Williamson (c), S Dhawan, MK Pandey, DJ Hooda, YK Pathan, Shakib Al Hasan,
+    WP Saha †, Rashid Khan, B Kumar, CJ Jordan, S Kaul
+  first_innings_fielding_team: srh
+  second_innings_fielding_team: kxip
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136576/kings-xi-punjab-vs-sunrisers-hyderabad-16th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    uday_range: SRH vs KXI - Match 16!A4:B14
+    sai_range: SRH vs KXI - Match 16!D4:E14
+uday:
+  our_team:
+    players: B Kumar, Rashid Khan, KS Williamson (c), MA Agarwal, CJ Jordan, R Ashwin (c), WP
+      Saha †, AJ Finch, DJ Hooda, MM Sharma, Yuvraj Singh
+    power_player: Rashid Khan
+  opposing_team:
+    players: "Shakib Al Hasan, KL Rahul †, S Dhawan, S Kaul, AJ Tye, CH Gayle, Mujeeb Ur Rahman,
+      KK Nair, MK Pandey, BB Sran, YK Pathan"
+    power_player: Shakib Al Hasan
+sai:
+  our_team:
+    players: "B Kumar, Rashid Khan, KS Williamson (c), KL Rahul †, MA Agarwal, CJ Jordan,
+      R Ashwin (c), AJ Tye, WP Saha †, KK Nair, DJ Hooda"
+    power_player: B Kumar
+  opposing_team:
+    players: CH Gayle, S Dhawan, Shakib Al Hasan, AJ Finch, S Kaul, Mujeeb Ur Rahman, MM Sharma,
+      MK Pandey, Yuvraj Singh, BB Sran, YK Pathan
+    power_player: Shakib Al Hasan

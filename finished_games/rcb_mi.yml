@@ -1,0 +1,31 @@
+---
+game:
+  rcb: V Kohli (c), CJ Anderson, AB de Villiers, Q de Kock †, SN Khan, Mandeep Singh,
+    CR Woakes, UT Yadav, YS Chahal, Washington Sundar, Mohammed Siraj
+  mi: RG Sharma (c), E Lewis, Ishan Kishan †, SA Yadav, KH Pandya, KA Pollard, MJ
+    McClenaghan, JJ Bumrah, Mustafizur Rahman, M Markande, HH Pandya
+  first_innings_fielding_team: rcb
+  second_innings_fielding_team: mi
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136574/mumbai-indians-vs-royal-challengers-bangalore-14th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    vinay_range: MI vs RCB - Match 14!A4:B14
+    vineeth_range: MI vs RCB - Match 14!D4:E14
+vineeth:
+  our_team:
+    players: V Kohli (c), CR Woakes, E Lewis, Washington Sundar, JJ Bumrah, MJ McClenaghan,
+      Ishan Kishan †, Q de Kock †, Mohammed Siraj, , Mandeep Singh
+    power_player: V Kohli (c)
+  opposing_team:
+    players: 'AB de Villiers, , YS Chahal, CJ Anderson, Mustafizur Rahman, M Markande,
+      , , , KA Pollard, '
+    power_player: RG Sharma (c)
+vinay:
+  our_team:
+    players: 'V Kohli (c), AB de Villiers, , E Lewis, Washington Sundar, JJ Bumrah,
+      MJ McClenaghan, Ishan Kishan †, Q de Kock †, Mohammed Siraj, '
+    power_player: CR Woakes
+  opposing_team:
+    players: ", , , YS Chahal, M Markande, CJ Anderson, Mandeep Singh, Mustafizur
+      Rahman, , KA Pollard, "
+    power_player: HH Pandya
