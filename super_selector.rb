@@ -253,7 +253,7 @@ class FantasyInnings
 		fielder_name = dismissal.scan(/\((.*)\)/)[0][0]
 		if(fielder_name.include? '/')
 			fielder_names = fielder_name.split('/')
-			fielder_names.each do |fn|
+			fielder_names.last(2).each do |fn|
 				fn.gsub!(/†/, '')  # Doing this for keepers where you have † symbol.
 				update_score_for_fielder(fn, true)
 			end

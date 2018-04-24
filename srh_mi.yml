@@ -1,0 +1,17 @@
+---
+game:
+  mi: RG Sharma (c), E Lewis, Ishan Kishan †, SA Yadav, KH Pandya, KA Pollard, MJ McClenaghan, JJ Bumrah, Mustafizur Rahman, M Markande, HH Pandya
+  srh: KS Williamson (c), S Dhawan, MK Pandey, Basil Thampi, YK Pathan, Shakib Al Hasan, WP Saha †, Rashid Khan, Sandeep Sharma, Mohammad Nabi, S Kaul
+  first_innings_fielding_team: mi
+  second_innings_fielding_team: srh
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136583/mumbai-indians-vs-sunrisers-hyderabad-23rd-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    sai_range: SRH vs MI - Match 23!A3:B13
+sai:
+  our_team:
+    players: JJ Bumrah, Shakib Al Hasan, Rashid Khan, KH Pandya, M Markande, Mustafizur Rahman, SA Yadav, Ishan Kishan †, YK Pathan, Sandeep Sharma, KA Pollard
+    power_player: JJ Bumrah
+  opposing_team:
+    players: S Dhawan, KS Williamson (c), Mohammad Nabi, MK Pandey, HH Pandya, MJ McClenaghan, E Lewis, RG Sharma (c), WP Saha †, S Kaul, Basil Thampi
+    power_player: S Dhawan

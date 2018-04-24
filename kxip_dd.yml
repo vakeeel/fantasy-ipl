@@ -1,0 +1,20 @@
+---
+game:
+  kxip: KL Rahul †, MA Agarwal, AJ Finch, Yuvraj Singh, KK Nair, AS Rajpoot, BB Sran,
+    R Ashwin (c), AJ Tye, DA Miller, Mujeeb Ur Rahman
+  dd: PP Shaw, G Gambhir (c), SS Iyer, Avesh Khan, RR Pant †, R Tewatia, DT Christian,
+    GJ Maxwell, A Mishra, TA Boult, LE Plunkett
+  first_innings_fielding_team: dd
+  second_innings_fielding_team: kxip
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136582/delhi-daredevils-vs-kings-xi-punjab-22nd-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    sai_range: KXIP vs DD - Match 22!A4:B14
+sai:
+  our_team:
+    players: KL Rahul †, TA Boult, DT Christian, KK Nair, G Gambhir (c), R Tewatia,
+      Mujeeb Ur Rahman, BB Sran, PP Shaw, AS Rajpoot, A Mishra
+    power_player: TA Boult
+  opposing_team:
+    players: "AJ Finch, GJ Maxwell, LE Plunkett, DA Miller, RR Pant †, SS Iyer, AJ Tye, R Ashwin (c), MA Agarwal, Avesh Khan, Yuvraj Singh"
+    power_player: AJ Finch
