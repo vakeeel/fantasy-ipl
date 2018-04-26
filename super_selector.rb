@@ -39,7 +39,7 @@ if options[:team] == nil
 end
 
 if options[:match] == nil
-    options[:match] = 'csk_kxip'
+    options[:match] = 'srh_kxip'
 end
 
 class FantasyInnings
@@ -127,9 +127,9 @@ class FantasyInnings
 		points = 0
 		if wickets.between?(2,3)
 			points = is_player_captain ? 2*10 : 10
-		elsif wickets == 4
+		elsif wickets.between?(4,5)
 			points = is_player_captain ? 2*25 : 25
-		elsif wickets >= 5
+		elsif wickets > 5
 			points = is_player_captain ? 2*50 : 50
 		end		
 
