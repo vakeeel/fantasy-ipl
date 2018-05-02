@@ -1,0 +1,18 @@
+---
+game:
+  kkr: SP Narine, AD Russell, KD Karthik (c) †, RV Uthappa, CA Lynn, Shubman Gill, N Rana, Shivam Mavi, Kuldeep Yadav, PP Chawla, MG Johnson
+  dd: C Munro, PP Shaw, SS Iyer (c), V Shankar, RR Pant †, R Tewatia, GJ Maxwell, LE Plunkett, A Mishra, Avesh Khan, TA Boult
+  first_innings_fielding_team: kkr
+  second_innings_fielding_team: dd
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136586/delhi-daredevils-vs-kolkata-knight-riders-26th-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    sai_range: DD vs KKR - Match 26!A3:B13
+sai:
+  our_team:
+    players: "SP Narine, GJ Maxwell, LE Plunkett, MG Johnson, PP Chawla, N Rana, SS Iyer (c), PP Shaw, R Tewatia, Kuldeep Yadav, V Shankar"
+    power_player: SP Narine
+  opposing_team:
+    players: "AD Russell, CA Lynn, TA Boult, C Munro, KD Karthik (c) †, RV Uthappa, RR Pant †, Avesh Khan, A
+      Mishra, Shivam Mavi, Shubman Gill"
+    power_player: AD Russell

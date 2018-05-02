@@ -1,0 +1,21 @@
+---
+game:
+  rcb: Q de Kock †, BB McCullum, V Kohli (c), M Vohra, Mandeep Singh, C de Grandhomme,
+    Washington Sundar, TG Southee, UT Yadav, YS Chahal, Mohammed Siraj
+  mi: SA Yadav, RG Sharma (c), Ishan Kishan †, JP Duminy, KH Pandya, KA Pollard, HH
+    Pandya, BCJ Cutting, MJ McClenaghan, M Markande, JJ Bumrah
+  first_innings_fielding_team: mi
+  second_innings_fielding_team: rcb
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1136591/royal-challengers-bangalore-vs-mumbai-indians-31st-match-indian-premier-league-2018
+  google:
+    spreadsheet_id: 1RtOsQdh8JWgLizDArbwvZuEm37M2d2IRwlvh095TeJc
+    sai_range: RCB vs MI - Match 31!A4:B14
+sai:
+  our_team:
+    players: V Kohli (c), MJ McClenaghan, KH Pandya, M Markande, YS Chahal, BB McCullum, SA Yadav, Mohammed Siraj,
+      JP Duminy, C de Grandhomme, M Vohra
+    power_player: V Kohli (c)
+  opposing_team:
+    players: JJ Bumrah, RG Sharma (c), HH Pandya, BCJ Cutting, Q de Kock †, Washington Sundar, TG Southee,
+      Ishan Kishan †, UT Yadav, Mandeep Singh, KA Pollard
+    power_player: JJ Bumrah

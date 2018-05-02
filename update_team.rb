@@ -31,7 +31,7 @@ end
 parser.parse!
 
 if options[:match] == nil
-    options[:match] = 'srh_kxip'
+    options[:match] = 'dd_rr'
 end
 
 class Team
@@ -46,8 +46,8 @@ class Team
     response.values.each_with_index do |row, index|
       # Print columns A and E, which correspond to indices 0 and 4.
       if index == 0
-        row[0].gsub!("(PP)","")
-        row[1].gsub!("(PP)","")
+        row[0].gsub!(/\(PP\)/i,"")
+        row[1].gsub!(/\(PP\)/i,"")
       end 
 
       @our_team << players.find { |player| player.downcase.include? row[0].downcase } 
@@ -58,7 +58,7 @@ end
 
 class ReadTeam
 
-  attr_reader :spreadsheet_id, :range, :sai_team, :vineeth_team, :uday_team, :vinay_team
+  attr_reader :spreadsheet_id, :range, :sai_team, :vineeth_team, :uday_team, :vinay_team, :vamsi_team
 
   OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'
   APPLICATION_NAME = 'Google Sheets API Ruby Quickstart'
@@ -75,7 +75,8 @@ class ReadTeam
     # @vineeth_team = Team.new(teams(config[:google][:vineeth_range]), 'vineeth', players)
     # @vinay_team = Team.new(teams(config[:google][:vinay_range]), 'vinay', players)
     @sai_team = Team.new(teams(config[:google][:sai_range]), 'sai', players)
-    @uday_team = Team.new(teams(config[:google][:uday_range]), 'uday', players)
+    @vamsi_team = Team.new(teams(config[:google][:vamsi_range]), 'vamsi', players)
+    # @uday_team = Team.new(teams(config[:google][:uday_range]), 'uday', players)
   end  
 
   private
@@ -131,6 +132,10 @@ game_config['sai']['our_team']['players'] = "#{read_team.sai_team.our_team.join(
 game_config['sai']['opposing_team']['players'] = "#{read_team.sai_team.opponent_team.join(', ')}"
 File.open("#{options[:match]}.yml", 'w') { |file| file.write game_config.to_yaml }
 
-game_config['uday']['our_team']['players'] = "#{read_team.uday_team.our_team.join(', ')}"
-game_config['uday']['opposing_team']['players'] = "#{read_team.uday_team.opponent_team.join(', ')}"
+# game_config['uday']['our_team']['players'] = "#{read_team.uday_team.our_team.join(', ')}"
+# game_config['uday']['opposing_team']['players'] = "#{read_team.uday_team.opponent_team.join(', ')}"
+# File.open("#{options[:match]}.yml", 'w') { |file| file.write game_config.to_yaml }
+
+game_config['vamsi']['our_team']['players'] = "#{read_team.vamsi_team.our_team.join(', ')}"
+game_config['vamsi']['opposing_team']['players'] = "#{read_team.vamsi_team.opponent_team.join(', ')}"
 File.open("#{options[:match]}.yml", 'w') { |file| file.write game_config.to_yaml }
