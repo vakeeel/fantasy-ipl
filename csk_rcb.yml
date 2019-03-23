@@ -1,0 +1,33 @@
+---
+game:
+  csk: Ambati Rayudu, Shane Watson, Suresh Raina, MS Dhoni (c) †, Kedar Jadhav, Ravindra
+    Jadeja, Dwayne Bravo, DL Chahar, Shardul Thakur, Harbhajan Singh, Imran Tahir
+  rcb: V Kohli (c), PA Patel †, Moeen Ali, Shimron Hetmyer, AB de Villiers, Shivam
+    Dube, Colin de Grandhomme, Umesh Yadav, Yuzvendra Chahal, Mohammad Siraj, Navdeep
+    Saini
+  google:
+    spreadsheet_id: 1iOXv_1wIT3CoaYVzJw7ptmcaPPIrvD-o6fMppmp4_Cg
+    sai_range: CSK vs RCB - MATCH 1!A4:B14
+    vineeth_range: CSK vs RCB - MATCH 1!E4:F14
+  first_innings_fielding_team: csk
+  second_innings_fielding_team: rcb
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1175356/chennai-super-kings-vs-royal-challengers-bangalore-1st-match-indian-premier-league-2019
+vv:
+  our_team:
+    players: Shane Watson, Dwayne Bravo, Shimron Hetmyer, C de Grandhomme, PA Patel †, Ambati Rayudu, MS
+      Dhoni (c) †, Yuzvendra Chahal, Umesh Yadav, Harbhajan Singh, Navdeep Saini
+    power_player: Shimron Hetmyer
+  opposing_team:
+    players: V Kohli (c), AB de Villiers, Suresh Raina, Moeen Ali, Kedar Jadhav, DL Chahar, RA Jadeja, Imran Tahir,
+     S Dube, Shardul Thakur, Mohammad Siraj
+    power_player: V Kohli (c)
+sai:
+  our_team:
+    players: Dwayne Bravo, Shane Watson, Shimron Hetmyer, DL Chahar, Ambati Rayudu,
+      Yuzvendra Chahal, Imran Tahir, Shardul Thakur, MS Dhoni (c) †, Mohammad Siraj,
+      Navdeep Saini
+    power_player: Dwayne Bravo
+  opposing_team:
+    players: 'V Kohli (c), AB de Villiers, Moeen Ali, Suresh Raina, RA Jadeja, Umesh Yadav,
+      Kedar Jadhav, S Dube, C de Grandhomme, Shardul Thakur, Harbhajan Singh'
+    power_player: V Kohli (c)
