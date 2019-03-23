@@ -1,10 +1,8 @@
-# Follow steps here: https://developers.google.com/sheets/api/quickstart/ruby#step_1_turn_on_the_api_name
-# in order to use this script.
-
-# To run the script:
-# ruby update_team.rb -m csk_rcb.yml
+# Follow steps here: 
 #
-# 
+# 1. https://developers.google.com/sheets/api/quickstart/ruby#step_1_turn_on_the_api_name
+# 2. bundle install
+# 3. ruby update_team.rb -m csk_rcb.yml
 
 require 'active_support'
 require 'active_support/core_ext'
