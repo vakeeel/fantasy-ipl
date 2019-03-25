@@ -1,0 +1,41 @@
+---
+game:
+  rr: AM Rahane (c), JC Buttler †, SPD Smith, SV Samson, BA Stokes, RA Tripathi, K
+    Gowtham, S Gopal, JC Archer, JD Unadkat, DS Kulkarni
+  kxip: KL Rahul †, CH Gayle, MA Agarwal, SN Khan, N Pooran, Mandeep Singh, SM Curran,
+    R Ashwin (c), Mohammed Shami, Mujeeb Ur Rahman, AS Rajpoot
+  google:
+    spreadsheet_id: 1iOXv_1wIT3CoaYVzJw7ptmcaPPIrvD-o6fMppmp4_Cg
+    sai_range: RR vs KXIP - MATCH 4!A4:B14
+    uday_range: RR vs KXIP - MATCH 4!D4:E14
+    vamsi_range: RR vs KXIP - MATCH 4!G4:H14
+  first_innings_fielding_team: rr
+  second_innings_fielding_team: kxip
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1175359/rajasthan-royals-vs-kings-xi-punjab-4th-match-indian-premier-league-2019
+uday:
+  our_team:
+    players: BA Stokes, JC Buttler †, KL Rahul †, Mujeeb Ur Rahman, SM Curran, K Gowtham, S Gopal,
+      AS Rajpoot, MA Agarwal, SN Khan, N Pooran
+    power_player: JC Buttler
+  opposing_team:
+    players: JC Archer, CH Gayle, SPD Smith, SV Samson, JD Unadkat, DS Kulkarni, Mohammed
+      Shami, R Ashwin (c), AM Rahane (c), Mandeep Singh, RA Tripathi
+    power_player: V Kohli (c)
+sai:
+  our_team:
+    players: 'BA Stokes, JC Buttler †, KL Rahul †, Mujeeb Ur Rahman, SM Curran, K
+      Gowtham, S Gopal, SV Samson, MA Agarwal, R Ashwin (c), SN Khan'
+    power_player: BA Stokes
+  opposing_team:
+    players: 'JC Archer, CH Gayle, SPD Smith, AM Rahane (c), JD Unadkat, DS Kulkarni,
+      Mohammed Shami, AS Rajpoot, N Pooran, Mandeep Singh, RA Tripathi'
+    power_player: JC Archer
+vamsi:
+  our_team:
+    players: 'JC Archer, JC Buttler †, SPD Smith, Mujeeb Ur Rahman, MA Agarwal, K Gowtham, N Pooran, SV Samson, S Gopal, Mohammed
+      Shami, SN Khan'
+    power_player: JC Buttler †
+  opposing_team:
+    players: "BA Stokes, CH Gayle, KL Rahul †, SM Curran, R Ashwin (c), AM Rahane (c), JD Unadkat, Mandeep
+      Singh, RA Tripathi, DS Kulkarni, AS Rajpoot"
+    power_player: BA Stokes
