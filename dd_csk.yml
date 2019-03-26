@@ -1,6 +1,6 @@
 ---
 game:
-  csk: AT Rayudu, SR Watson, SK Raina, MS Dhoni (c) †, KM Jadhav, Ravindra Jadeja,
+  csk: AT Rayudu, SR Watson, SK Raina, MS Dhoni (c) †, KM Jadhav, RA Jadeja,
     DJ Bravo, DL Chahar, Shardul Thakur, Harbhajan Singh, Imran Tahir
   dd: CA Ingram, PP Shaw, SS Iyer (c), RR Pant †, KMA Paul, AR Patel, R Tewatia, A
     Mishra, I Sharma, K Rabada, S Dhawan
@@ -14,7 +14,7 @@ game:
   match_url: http://www.espncricinfo.com/series/8048/scorecard/1175360/delhi-capitals-vs-chennai-super-kings-5th-match-indian-premier-league-2019
 uday:
   our_team:
-    players: DJ Bravo, SR Watson, S Dhawan, Imran Tahir, SS Iyer (c), A Mishra, AR Patel, Ravindra Jadeja,
+    players: DJ Bravo, SR Watson, S Dhawan, Imran Tahir, SS Iyer (c), A Mishra, AR Patel, RA Jadeja,
       MS Dhoni (c) †, I Sharma, KM Jadhav
     power_player: Imran Tahir
   opposing_team:
@@ -28,11 +28,11 @@ sai:
     power_player: DJ Bravo
   opposing_team:
     players: SR Watson, SK Raina, K Rabada, PP Shaw, CA Ingram, KM Jadhav, KMA Paul,
-      Ravindra Jadeja, DL Chahar, Harbhajan Singh, Shardul Thakur
-    power_player: JC Archer
+      RA Jadeja, DL Chahar, Harbhajan Singh, Shardul Thakur
+    power_player: SK Raina
 vamsi:
   our_team:
-    players: "DJ Bravo, K Rabada, SS Iyer (c), CA Ingram, AT Rayudu, Ravindra Jadeja, KMA Paul, DL
+    players: "DJ Bravo, K Rabada, SS Iyer (c), CA Ingram, AT Rayudu, RA Jadeja, KMA Paul, DL
       Chahar, AR Patel, R Tewatia, MS Dhoni (c) †"
     power_player: DJ Bravo
   opposing_team:
