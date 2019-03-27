@@ -1,0 +1,41 @@
+---
+game:
+  kkr: CA Lynn, SP Narine, RV Uthappa, N Rana, KD Karthik (c) †, AD Russell, Shubman
+    Gill, PP Chawla, Kuldeep Yadav, M Prasidh Krishna, LH Ferguson
+  kxip: KL Rahul †, CH Gayle, MA Agarwal, SN Khan, DA Miller, Mandeep Singh, GC Viljoen,
+    R Ashwin (c), Mohammed Shami, CV Varun, AJ Tye
+  google:
+    spreadsheet_id: 1iOXv_1wIT3CoaYVzJw7ptmcaPPIrvD-o6fMppmp4_Cg
+    vv_range: KKR vs KXIP - MATCH 6!E4:G14
+    sai_range: KKR vs KXIP - MATCH 6!A4:C14
+    vamsi_range: KKR vs KXIP - MATCH 6!I4:K14
+  first_innings_fielding_team: kxip
+  second_innings_fielding_team: kkr
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1175361/kolkata-knight-riders-vs-kings-xi-punjab-6th-match-indian-premier-league-2019
+vv:
+  our_team:
+    players: SP Narine, CH Gayle, AJ Tye, GC Viljoen, CV Varun, MA Agarwal, Mohammed Shami, PP Chawla,
+      RV Uthappa, KD Karthik (c) †, Shubman Gill
+    power_player: CH Gayle
+  opposing_team:
+    players: AD Russell, CA Lynn, DA Miller, N Rana, KL Rahul †, R Ashwin (c), Kuldeep
+      Yadav, LH Ferguson, M Prasidh Krishna, SN Khan, Mandeep Singh
+    power_player: AD Russell
+sai:
+  our_team:
+    players: SP Narine, AJ Tye, CA Lynn, MA Agarwal, DA Miller, PP Chawla, R Ashwin
+      (c), KD Karthik (c) †, LH Ferguson, M Prasidh Krishna, Mandeep Singh
+    power_player: SP Narine
+  opposing_team:
+    players: AD Russell, CH Gayle, N Rana, KL Rahul †, RV Uthappa, Kuldeep Yadav, GC Viljoen, Mohammed Shami,
+      CV Varun, SN Khan, Shubman Gill
+    power_player: AD Russell
+vamsi:
+  our_team:
+    players: "SP Narine, KL Rahul †, AJ Tye, LH Ferguson, DA Miller, CV Varun, CA Lynn, M Prasidh Krishna,
+      KD Karthik (c) †, MA Agarwal, Shubman Gill"
+    power_player: SP Narine
+  opposing_team:
+    players: AD Russell, CH Gayle, Kuldeep Yadav, GC Viljoen, R Ashwin (c), N Rana, Mohammed Shami,
+      PP Chawla, SN Khan, RV Uthappa, Mandeep Singh
+    power_player: Kuldeep Yadav
