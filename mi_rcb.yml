@@ -1,0 +1,39 @@
+---
+game:
+  mi: Q de Kock †, RG Sharma (c), SA Yadav, Yuvraj Singh, KA Pollard, HH Pandya, KH
+    Pandya, M Markande, MJ McClenaghan, SL Malinga, JJ Bumrah
+  rcb: V Kohli (c), PA Patel †, MM Ali, SO Hetmyer, AB de Villiers, Shivam Dube, Colin
+    de Grandhomme, UT Yadav, YS Chahal, Mohammed Siraj, Navdeep Saini
+  google:
+    spreadsheet_id: 1iOXv_1wIT3CoaYVzJw7ptmcaPPIrvD-o6fMppmp4_Cg
+    uday_range: MI vs RCB - MATCH 7!A4:B14
+    vv_range: MI vs RCB - MATCH 7!D4:E14
+    vamsi_range: MI vs RCB - MATCH 7!G4:H14
+  first_innings_fielding_team: rcb
+  second_innings_fielding_team: mi
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1175362/royal-challengers-bangalore-vs-mumbai-indians-7th-match-indian-premier-league-2019
+vv:
+  our_team:
+    players: AB de Villiers, HH Pandya, JJ Bumrah, KH Pandya, MM Ali, MJ McClenaghan, Yuvraj Singh, UT Yadav, Colin de Grandhomme, PA Patel †, Shivam Dube
+    power_player: HH Pandya
+  opposing_team:
+    players: V Kohli (c), Q de Kock †, RG Sharma (c), M Markande, SA Yadav, YS Chahal, SO Hetmyer, SL Malinga,
+      Mohammed Siraj, KA Pollard, Navdeep Saini
+    power_player: V Kohli (c)
+uday:
+  our_team:
+    players: AB de Villiers, HH Pandya, JJ Bumrah, KH Pandya, MM Ali, MJ McClenaghan, Mohammed Siraj, UT Yadav, KA Pollard, PA Patel †, Shivam Dube
+    power_player: AB de Villiers
+  opposing_team:
+    players: V Kohli (c), RG Sharma (c), Q de Kock †, SL Malinga, Colin de Grandhomme, YS Chahal, SO Hetmyer, SA Yadav, Yuvraj Singh,
+      M Markande, Navdeep Saini
+    power_player: V Kohli (c)
+vamsi:
+  our_team:
+    players: "AB de Villiers, JJ Bumrah, KH Pandya, Q de Kock †, , M Markande, Colin de Grandhomme, M Markande, Shivam Dube, SO Hetmyer, Navdeep
+      Saini"
+    power_player: JJ Bumrah
+  opposing_team:
+    players: V Kohli (c),  RG Sharma (c), MJ McClenaghan, HH Pandya, MM Ali, SL Malinga, YS Chahal, PA Patel †, Yuvraj Singh, KA Pollard, Mohammed
+      Siraj
+    power_player: V Kohli (c)

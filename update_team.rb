@@ -83,11 +83,11 @@ class Team
       # Print columns A and E, which correspond to indices 0 and 4.
       if index == 0
         row[0].gsub!(/\(PP\)/i,"")
-        row[2].gsub!(/\(PP\)/i,"")
+        row[1].gsub!(/\(PP\)/i,"")
       end 
 
       @our_team << players.find { |player| player.downcase.include? row[0].downcase } 
-      @opponent_team << players.find { |player| player.downcase.include? row[2].downcase } 
+      @opponent_team << players.find { |player| player.downcase.include? row[1].downcase } 
     end if response.values.present?
   end  
 end 
