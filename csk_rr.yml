@@ -1,0 +1,41 @@
+---
+game:
+  csk: AT Rayudu, SR Watson, SK Raina, MS Dhoni (c) †, KM Jadhav, RA Jadeja, DJ Bravo,
+    DL Chahar, SN Thakur, MJ Santner, Imran Tahir
+  rr: AM Rahane (c), JC Buttler †, SPD Smith, SV Samson, BA Stokes, RA Tripathi, K
+    Gowtham, S Gopal, JC Archer, JD Unadkat, DS Kulkarni
+  google:
+    spreadsheet_id: 1iOXv_1wIT3CoaYVzJw7ptmcaPPIrvD-o6fMppmp4_Cg
+    sai_range: CSK vs RR - Match 12!A4:C14
+    uday_range: CSK vs RR - Match 12!F4:H14
+    vamsi_range: CSK vs RR - Match 12!K4:M14
+  first_innings_fielding_team: rr
+  second_innings_fielding_team: csk
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1175367/chennai-super-kings-vs-rajasthan-royals-12th-match-indian-premier-league-2019
+sai:
+  our_team:
+    players: DJ Bravo, JC Archer, SV Samson, S Gopal, Imran Tahir, SK Raina, AT Rayudu,
+      JD Unadkat, KM Jadhav, MS Dhoni (c) †, SN Thakur
+    power_player: DJ Bravo
+  opposing_team:
+    players: BA Stokes, JC Buttler †, K Gowtham, RA Jadeja, MJ Santner, SR Watson, SPD Smith,
+      AM Rahane (c), DS Kulkarni, DL Chahar, RA Tripathi
+    power_player: JC Buttler †
+uday:
+  our_team:
+    players: BA Stokes, JC Archer, Imran Tahir, SK Raina, S Gopal, K Gowtham, SPD Smith, MS Dhoni
+      (c) †, JD Unadkat, DL Chahar, RA Tripathi
+    power_player: Imran Tahir
+  opposing_team:
+    players: DJ Bravo, JC Buttler †, SV Samson, SR Watson, AT Rayudu, RA Jadeja, KM
+      Jadhav, AM Rahane (c), SN Thakur, MJ Santner, DS Kulkarni
+    power_player: DJ Bravo
+vamsi:
+  our_team:
+    players: 'DJ Bravo, JC Archer, SR Watson, SK Raina, SPD Smith, SV Samson, K Gowtham, RA
+      Jadeja, SN Thakur, DS Kulkarni, RA Tripathi'
+    power_player: SR Watson
+  opposing_team:
+    players: BA Stokes, JC Buttler †, Imran Tahir, MJ Santner, KM Jadhav, AM Rahane (c), AT Rayudu,
+      DL Chahar, S Gopal, JD Unadkat, MS Dhoni (c) †
+    power_player: BA Stokes

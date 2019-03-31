@@ -1,0 +1,39 @@
+---
+game:
+  rr: AM Rahane (c), SPD Smith, SV Samson, BA Stokes, RA Tripathi, JC Buttler †, K
+    Gowtham, S Gopal, DS Kulkarni, JD Unadkat, JC Archer
+  srh: DA Warner, JM Bairstow †, KS Williamson (c), V Shankar, YK Pathan, S Nadeem,
+    MK Pandey, Rashid Khan, B Kumar, Sandeep Sharma, S Kaul
+  google:
+    spreadsheet_id: 1iOXv_1wIT3CoaYVzJw7ptmcaPPIrvD-o6fMppmp4_Cg
+    sai_range: SRH vs RR - MATCH 8!A4:C14
+    uday_range: SRH vs RR - MATCH 8!E4:G14
+    vamsi_range: SRH vs RR - MATCH 8!I4:K14
+  first_innings_fielding_team: srh
+  second_innings_fielding_team: rr
+  match_url: http://www.espncricinfo.com/series/8048/scorecard/1175363/sunrisers-hyderabad-vs-rajasthan-royals-8th-match-indian-premier-league-2019
+sai:
+  our_team:
+    players: JC Buttler †, BA Stokes, Rashid Khan, JC Archer, JM Bairstow †, S Kaul, AM Rahane
+      (c), DS Kulkarni, K Gowtham, MK Pandey, YK Pathan, S Nadeem
+    power_player: BA Stokes
+  opposing_team:
+    players: DA Warner, KS Williamson (c), B Kumar, SPD Smith, V Shankar, YK Pathan, S Nadeem, SV Samson,
+      JD Unadkat, S Gopal, Sandeep Sharma, RA Tripathi
+    power_player: DA Warner
+uday:
+  our_team:
+    players: JC Buttler †, Rashid Khan, BA Stokes, JM Bairstow †, S Kaul, SPD Smith, Sandeep
+      Sharma, K Gowtham, DS Kulkarni, YK Pathan, RA Tripathi
+    power_player: Rashid Khan
+  opposing_team:
+    players: DA Warner, KS Williamson (c), B Kumar, JC Archer, SV Samson, V Shankar, YK Pathan, S Nadeem,
+      JD Unadkat, AM Rahane (c), MK Pandey, S Gopal
+    power_player: DA Warner
+vamsi:
+  our_team:
+    players: "BA Stokes, KS Williamson (c), JM Bairstow †, SPD Smith, B Kumar, S Nadeem, Sandeep Sharma, S Gopal, MK Pandey, DS Kulkarni, RA Tripathi"
+    power_player: BA Stokes
+  opposing_team:
+    players: "Rashid Khan, JC Buttler †, DA Warner, V Shankar, JC Archer, AM Rahane (c), S Kaul, K Gowtham, SV Samson, JD Unadkat, YK Pathan"
+    power_player: Rashid Khan
